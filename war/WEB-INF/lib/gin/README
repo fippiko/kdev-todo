@@ -1,0 +1,9 @@
+README for Gin 1.5. basic distribution
+
+Due to a backwards incompatible change in GWT 2.2.0, Gin's 1.5 release contains
+two different compiled versions: 1.5-pre-gwt-2.2 and 1.5-post-gwt2.2. These two
+jars are feature-equivalent, the only difference is that each works with a
+different subset of GWT versions:
+
+* 1.5-pre-gwt-2.2 works with GWT 2.1.1 and before
+* 1.5-post-gwt2.2 works with GWT 2.2.0 and later
