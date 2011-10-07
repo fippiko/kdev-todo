@@ -16,6 +16,6 @@ public class AddProjectPlace extends Place {
       public String getToken(AddProjectPlace place) {
          return "";
       }
- 
+
    }
 }

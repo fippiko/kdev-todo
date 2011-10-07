@@ -2,7 +2,7 @@ package ch.kdev.todo.client.ui.project.manage;
 
 import java.util.List;
 
-import ch.kdev.todo.shared.model.Project;
+import ch.kdev.todo.client.proxy.ProjectProxy;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -14,6 +14,6 @@ public interface ManageProjectsView extends IsWidget {
    public interface Presenter {
       void goTo(Place place);
 
-      List<Project> getProjects();
+      List<ProjectProxy> getProjects();
    }
 }

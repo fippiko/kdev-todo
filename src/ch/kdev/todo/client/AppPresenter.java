@@ -8,52 +8,38 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
-public class AppPresenter implements AppLayout.Presenter, MainMenuView.Presenter{
+public class AppPresenter implements AppLayout.Presenter, MainMenuView.Presenter {
 
    private ClientFactory clientFactory;
+
    /*
-   private final PlaceController placeController;
-   private AppLayout appLayout;
-   private MainMenuView mainMenuView;
-*/
+    * private final PlaceController placeController; private AppLayout
+    * appLayout; private MainMenuView mainMenuView;
+    */
    /*
+    * 
+    * @Inject public AppPresenter(PlaceController placeController, AppLayout
+    * appLayout, MainMenuView mainMenuView) { this.appLayout = appLayout;
+    * this.placeController = placeController; this.mainMenuView = mainMenuView;
+    * 
+    * this.appLayout.setPresenter(this); this.mainMenuView.setPresenter(this); }
+    * 
+    * @Override public void gotoDefaultPlace() { placeController.goTo(new
+    * ManageProjectsPlace()); }
+    * 
+    * @Override public void gotoManageProjectsPlace() { placeController.goTo(new
+    * ManageProjectsPlace()); }
+    * 
+    * @Override public AcceptsOneWidget getContentContainer() { return
+    * appLayout.getContentContainer(); }
+    * 
+    * @Override public Widget getMainLayoutPanel() { return
+    * appLayout.getMainLayoutPanel(); }
+    * 
+    * @Override public MainMenuView getMainMenuView() { return
+    * this.mainMenuView; }
+    */
 
-   @Inject
-   public AppPresenter(PlaceController placeController, AppLayout appLayout, MainMenuView mainMenuView) {
-      this.appLayout = appLayout;
-      this.placeController = placeController;
-      this.mainMenuView = mainMenuView;
-      
-      this.appLayout.setPresenter(this);
-      this.mainMenuView.setPresenter(this);
-   }
-
-   @Override
-   public void gotoDefaultPlace() {
-      placeController.goTo(new ManageProjectsPlace());
-   }
-
-   @Override
-   public void gotoManageProjectsPlace() {
-      placeController.goTo(new ManageProjectsPlace());
-   }
-
-   @Override
-   public AcceptsOneWidget getContentContainer() {
-      return appLayout.getContentContainer();
-   }
-
-   @Override
-   public Widget getMainLayoutPanel() {
-      return appLayout.getMainLayoutPanel();
-   }
-
-   @Override
-   public MainMenuView getMainMenuView() {
-      return this.mainMenuView;
-   }
-   */
-   
    @Inject
    public AppPresenter(ClientFactory clientFactory) {
       this.clientFactory = clientFactory;

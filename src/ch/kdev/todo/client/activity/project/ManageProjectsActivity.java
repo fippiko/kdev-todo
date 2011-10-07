@@ -1,12 +1,11 @@
 package ch.kdev.todo.client.activity.project;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ch.kdev.todo.client.ClientFactory;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
+import ch.kdev.todo.client.proxy.ProjectProxy;
 import ch.kdev.todo.client.ui.project.manage.ManageProjectsView;
-import ch.kdev.todo.shared.model.Project;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -46,14 +45,18 @@ public class ManageProjectsActivity extends AbstractActivity implements ManagePr
    }
 
    @Override
-   public List<Project> getProjects() {
-      List<Project> allProjects = new ArrayList<Project>();
+   public List<ProjectProxy> getProjects() {
+      /*
+       * List<ProjectProxy> allProjects = new ArrayList<Project>();
+       * 
+       * allProjects.add(new Project("1", "Test1", "Description of Test1"));
+       * allProjects.add(new Project("2", "Test2", "Description of Test2"));
+       * allProjects.add(new Project("3", "Test3", "Description of Test3"));
+       * allProjects.add(new Project("4", "Test4", "Description of Test4"));
+       * 
+       * return allProjects;
+       */
 
-      allProjects.add(new Project("1", "Test1", "Description of Test1"));
-      allProjects.add(new Project("2", "Test2", "Description of Test2"));
-      allProjects.add(new Project("3", "Test3", "Description of Test3"));
-      allProjects.add(new Project("4", "Test4", "Description of Test4"));
-
-      return allProjects;
+      return null;
    }
 }

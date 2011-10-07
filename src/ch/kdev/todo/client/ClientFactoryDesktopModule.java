@@ -1,6 +1,5 @@
 package ch.kdev.todo.client;
 
-import ch.kdev.todo.client.activity.project.EditProjectActivity;
 import ch.kdev.todo.client.ui.layout.AppLayout;
 import ch.kdev.todo.client.ui.layout.AppLayoutDesktop;
 import ch.kdev.todo.client.ui.mainmenu.MainMenuView;
@@ -21,18 +20,18 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
 public class ClientFactoryDesktopModule extends AbstractGinModule {
 
    @Override
-   protected void configure() { 
-      //bind(AppPresenter.class).in(Singleton.class);
+   protected void configure() {
+      // bind(AppPresenter.class).in(Singleton.class);
       bind(ClientFactory.class).to(ClientFactoryDesktop.class).in(Singleton.class);
-      
+
       bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
       bind(PlaceController.class).to(SimplePlaceController.class).in(Singleton.class);
-      
+
       bind(AppLayout.class).to(AppLayoutDesktop.class).in(Singleton.class);
       bind(AppLayout.Presenter.class).to(AppPresenter.class);
       bind(MainMenuView.class).to(MainMenuViewDesktop.class).in(Singleton.class);
       bind(MainMenuView.Presenter.class).to(AppPresenter.class);
-      
+
       bind(ManageProjectsView.class).to(ManageProjectsViewDesktop.class).in(Singleton.class);
       bind(AddProjectView.class).to(AddProjectViewDesktop.class);
       bind(EditProjectView.class).to(EditProjectViewDesktop.class);

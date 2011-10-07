@@ -31,7 +31,7 @@
 			
 			<tr>
 				<td></td>
-				<td><g:Button ui:field="addProjectButton"></g:Button></td>
+				<td><g:Button ui:field="addProjectButton">Add new Project</g:Button></td>
 			</tr>
 		</table>
 		

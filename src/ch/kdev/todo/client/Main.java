@@ -3,6 +3,9 @@ package ch.kdev.todo.client;
 import ch.kdev.todo.client.mapper.AppActivityMapper;
 import ch.kdev.todo.client.mapper.AppPlaceHistoryMapper;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
+import ch.kdev.todo.client.proxy.ProjectProxy;
+import ch.kdev.todo.client.requestfactory.AppRequestFactory;
+import ch.kdev.todo.client.requestfactory.ProjectRequest;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -23,11 +26,18 @@ public class Main implements EntryPoint {
     */
    public void onModuleLoad() {
       ClientFactoryDesktop clientFactory = GWT.create(ClientFactoryDesktop.class);
-      
+
       EventBus eventBus = clientFactory.getEventBus();
       PlaceController placeController = clientFactory.getPlaceController();
 
       AppPresenter appController = clientFactory.getAppController();
+
+      AppRequestFactory testRequestFactory = GWT.create(AppRequestFactory.class);
+      testRequestFactory.initialize(eventBus);
+
+      ProjectRequest request = testRequestFactory.projectRequest();
+      ProjectProxy newEmployee = request.create(ProjectProxy.class);
+      String name = newEmployee.getName();
 
       // Vertical Master container Activity Mapper
       ActivityMapper mainActivityMapper = new AppActivityMapper(clientFactory);

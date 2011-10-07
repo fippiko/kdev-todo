@@ -8,7 +8,6 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.inject.Inject;
 
 public class EditProjectActivity extends AbstractActivity implements EditProjectView.Presenter {
    // Used to obtain views, eventBus, placeController

@@ -24,7 +24,7 @@ public class MainMenuViewDesktop extends Composite implements MainMenuView {
    @Inject
    public MainMenuViewDesktop(Presenter presenter) {
       this.presenter = presenter;
-      
+
       HTMLPanel panel = binder.createAndBindUi(this);
       initWidget(panel);
    }

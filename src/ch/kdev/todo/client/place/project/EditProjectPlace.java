@@ -2,7 +2,6 @@ package ch.kdev.todo.client.place.project;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
-import com.google.inject.Inject;
 
 public class EditProjectPlace extends Place {
    private String projectId;

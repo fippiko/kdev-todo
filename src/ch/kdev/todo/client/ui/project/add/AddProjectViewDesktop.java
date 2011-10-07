@@ -41,9 +41,14 @@ public class AddProjectViewDesktop extends Composite implements AddProjectView {
    void addProjectButtonClicked(ClickEvent e) {
       String projectName = projectNameTextBox.getText();
       String projectDescription = projectDescriptionTextArea.getText();
-      
-      //TODO validate here
-      
+
+      this.validateForm();
+
       presenter.addNewProject(projectName, projectDescription);
+   }
+
+   private void validateForm() {
+      // TODO Auto-generated method stub
+
    }
 }

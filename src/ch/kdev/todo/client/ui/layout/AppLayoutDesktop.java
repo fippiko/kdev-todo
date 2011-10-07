@@ -36,10 +36,9 @@ public class AppLayoutDesktop implements AppLayout {
    @Inject
    public AppLayoutDesktop(Presenter presenter) {
       mainMenu = (MainMenuViewDesktop) presenter.getMainMenuView();
-      
+
       mainLayoutPanel = binder.createAndBindUi(this);
    }
-      
 
    @Override
    public DockLayoutPanel getMainLayoutPanel() {

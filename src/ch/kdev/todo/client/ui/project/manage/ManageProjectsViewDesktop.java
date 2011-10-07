@@ -4,7 +4,7 @@ import java.util.List;
 
 import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
-import ch.kdev.todo.shared.model.Project;
+import ch.kdev.todo.client.proxy.ProjectProxy;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -41,23 +41,23 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
    @Override
    protected void onLoad() {
       super.onLoad();
-      
+
       enableWidgets();
 
       fillProjectList();
    }
-   
-   private void enableWidgets(){
+
+   private void enableWidgets() {
       Boolean itemSelected = projectList.getSelectedIndex() >= 0;
 
       editProjectButton.setEnabled(itemSelected);
    }
 
    private void fillProjectList() {
-      List<Project> allProjects = presenter.getProjects();
+      List<ProjectProxy> allProjects = presenter.getProjects();
 
       projectList.clear();
-      for (Project project : allProjects) {
+      for (ProjectProxy project : allProjects) {
          projectList.addItem(project.getName() + " : " + project.getDescription(), project.getID());
       }
    }

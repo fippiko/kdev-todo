@@ -12,7 +12,7 @@ public interface AppLayout {
 
    AcceptsOneWidget getContentContainer();
 
-   public interface Presenter{
+   public interface Presenter {
       public AcceptsOneWidget getContentContainer();
 
       public Widget getMainLayoutPanel();
