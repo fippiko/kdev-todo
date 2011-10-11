@@ -23,7 +23,7 @@ public class Main implements EntryPoint {
    /**
     * This is the entry point method.
     */
-   public void onModuleLoad() {
+   public void onModuleLoad() { 
       ClientFactoryDesktop clientFactory = GWT.create(ClientFactoryDesktop.class);
 
       EventBus eventBus = clientFactory.getEventBus();

@@ -1,3 +1,3 @@
 <factorypath>
-    <factorypathentry kind="WKSPJAR" id="/gwt-mvp-prototype/war/WEB-INF/lib/requestfactory-apt.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="/home/philipp/Development/GWT/gwt-2.4.0/requestfactory-apt.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>

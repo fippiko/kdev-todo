@@ -3,3 +3,4 @@ war/WEB-INF/deploy/
 gwt-unitCache/
 war/main/
 target/
+.apt_generated/
