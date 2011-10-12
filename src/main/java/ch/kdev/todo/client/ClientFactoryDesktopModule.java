@@ -1,6 +1,5 @@
 package ch.kdev.todo.client;
 
-import ch.kdev.todo.client.requestfactory.AppRequestFactory;
 import ch.kdev.todo.client.ui.layout.AppLayout;
 import ch.kdev.todo.client.ui.layout.AppLayoutDesktop;
 import ch.kdev.todo.client.ui.mainmenu.MainMenuView;
@@ -11,6 +10,7 @@ import ch.kdev.todo.client.ui.project.edit.EditProjectView;
 import ch.kdev.todo.client.ui.project.edit.EditProjectViewDesktop;
 import ch.kdev.todo.client.ui.project.manage.ManageProjectsView;
 import ch.kdev.todo.client.ui.project.manage.ManageProjectsViewDesktop;
+import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.PlaceController;
@@ -38,5 +38,4 @@ public class ClientFactoryDesktopModule extends AbstractGinModule {
       bind(AddProjectView.class).to(AddProjectViewDesktop.class);
       bind(EditProjectView.class).to(EditProjectViewDesktop.class);
    }
-
 }

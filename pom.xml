@@ -6,15 +6,19 @@
 	<groupId>ch.kdev.todo</groupId>
 	<artifactId>gwt-mvp-prototype</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 
 	<properties>
 		<!-- Project properties -->
 		<target.jdk>1.6</target.jdk>
 		<webapp.directory>${project.build.directory}/${project.build.finalName}</webapp.directory>
 
-		<!-- Dependencies versions -->
+		<!-- Plugin properties -->
 		<gwt.version>2.4.0</gwt.version>
+		<gwt-maven-plugin.version>2.3.0-1</gwt-maven-plugin.version>
+		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+		<maven-eclipse-plugin.version>2.8</maven-eclipse-plugin.version>
+		<maven-clean-plugin.version>2.4.1</maven-clean-plugin.version>
 
 		<!-- GWT needs at least java 1.6 -->
 		<maven.compiler.source>1.6</maven.compiler.source>
@@ -23,12 +27,6 @@
 		<!-- Don't let your Mac use a crazy non-standard encoding -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-		<!-- Plugin properties -->
-		<gwt-maven-plugin.version>2.3.0-1</gwt-maven-plugin.version>
-		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
-		<maven-eclipse-plugin.version>2.8</maven-eclipse-plugin.version>
-		<maven-clean-plugin.version>2.4.1</maven-clean-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -47,27 +45,29 @@
 		</dependency>
 
 
-		<!-- For the servlet filter -->
+		<!-- Gin -->
+		<dependency>
+			<groupId>com.google.gwt.inject</groupId>
+			<artifactId>gin</artifactId>
+			<version>1.5.0</version>
+		</dependency>
 
+
+		<!-- For the servlet filter -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 		</dependency>
 
-		<!-- RequestFactory server -->
 
+		<!-- RequestFactory server -->
 		<dependency>
 			<groupId>com.google.web.bindery</groupId>
 			<artifactId>requestfactory-server</artifactId>
 			<version>${gwt.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.google.gwt.inject</groupId>
-			<artifactId>gin</artifactId>
-			<version>1.5.0</version>
-		</dependency>
 
 		<!-- RequestFactory will use JSR 303 javax.validation if you let it -->
 		<dependency>
@@ -91,7 +91,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
- 
+
 		<!-- Required by Hibernate validator because slf4j-log4j is optional in 
 			the hibernate-validator POM -->
 		<dependency>
@@ -202,9 +202,9 @@
 				<configuration>
 					<hostedWebapp>${webapp.directory}</hostedWebapp>
 					<copyWebapp>true</copyWebapp>
-					<runTarget>Main.html</runTarget>
+					<runTarget>Todo.html</runTarget>
 					<mode>htmlunit</mode>
-					<module>ch.kdev.todo.Main</module>
+					<module>ch.kdev.todo.Todo</module>
 				</configuration>
 				<executions>
 					<execution>

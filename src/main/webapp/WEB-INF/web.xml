@@ -17,7 +17,7 @@
 
 	<!-- Default page to serve -->
 	<welcome-file-list>
-		<welcome-file>Main.html</welcome-file>
+		<welcome-file>Todo.html</welcome-file>
 	</welcome-file-list>
 
 </web-app>

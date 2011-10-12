@@ -6,8 +6,33 @@
 			height: 100%;
 			width: 100%;
 		}
+		
+		.nameTextBox{
+			width: 200px;
+		}
+		
+		.descriptionTextArea{
+			height:100px;
+			width: 200px;
+		}
 	</ui:style>
 	<g:HTMLPanel styleName='{style.mainPanel}'>
-		Edit Project <g:Label ui:field="projectIdLabel"/>
+		Edit Project
+		
+		<table>
+			<tr>
+				<td><g:Label>Name:</g:Label></td>
+				<td><g:TextBox ui:field="projectNameTextBox" styleName="{style.nameTextBox}"></g:TextBox></td>
+			</tr>
+			<tr>
+				<td><g:Label>Description:</g:Label></td>
+				<td><g:TextArea ui:field="projectDescriptionTextArea" styleName="{style.descriptionTextArea}"></g:TextArea></td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td><g:Button ui:field="updateProjectButton">Update Project</g:Button></td>
+			</tr>
+		</table>
 	</g:HTMLPanel>
 </ui:UiBinder>
