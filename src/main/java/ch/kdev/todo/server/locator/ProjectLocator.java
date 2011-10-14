@@ -13,7 +13,7 @@ public class ProjectLocator extends Locator<Project, Long> {
 
    @Override
    public Long getId(Project domainObject) {
-      return Long.valueOf(domainObject.getID());
+      return domainObject.getId();
    }
 
    @Override

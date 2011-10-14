@@ -9,9 +9,9 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 @ProxyFor(value = Project.class, locator = ProjectLocator.class)
 public interface ProjectProxy extends EntityProxy {
 
-   public Integer getID();
+   public Long getId();
 
-   public void setID(Integer id);
+   public void setId(Long id);
 
    public String getName();
 

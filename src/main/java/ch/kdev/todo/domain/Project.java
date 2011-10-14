@@ -3,19 +3,18 @@ package ch.kdev.todo.domain;
 //TODO change this to an entity
 
 public class Project {
-   private Integer id;
+   private Long id;
    private String name;
    private String description;
 
    public Project() {
-
    }
 
-   public Integer getID() {
+   public Long getId() {
       return id;
    }
 
-   public void setID(Integer id) {
+   public void setId(Long id) {
       this.id = id;
    }
 

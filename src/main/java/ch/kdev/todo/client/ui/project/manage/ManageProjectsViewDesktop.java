@@ -82,7 +82,7 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
    public void updateProjectList(List<ProjectProxy> projects) {
       projectList.clear();
       for (ProjectProxy project : projects) {
-         projectList.addItem(project.getName() + " : " + project.getDescription(), String.valueOf(project.getID()));
+         projectList.addItem(project.getName() + " : " + project.getDescription(), String.valueOf(project.getId()));
       }
    }
 }

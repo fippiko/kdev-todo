@@ -31,8 +31,8 @@ public class EditProjectActivity extends AbstractActivity implements EditProject
    }
 
    private void loadProject(String projectID) {
-      int projectIdAsInt = Integer.valueOf(projectID);
-      this.requestFactory.projectRequest().findProject(projectIdAsInt).fire( new Receiver<ProjectProxy>() {
+      long projectIdAsLong = Integer.valueOf(projectID);
+      this.requestFactory.projectRequest().findProject(projectIdAsLong).fire( new Receiver<ProjectProxy>() {
 
          @Override
          public void onSuccess(ProjectProxy receivedProject) {
