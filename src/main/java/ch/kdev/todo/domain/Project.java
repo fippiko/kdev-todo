@@ -1,7 +1,15 @@
 package ch.kdev.todo.domain;
 
-//TODO change this to an entity
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
+@Entity
+@Table( name = "PROJECTS" )
 public class Project {
    private Long id;
    private String name;
@@ -10,6 +18,9 @@ public class Project {
    public Project() {
    }
 
+   @Id
+   @GeneratedValue(generator="increment")
+   @GenericGenerator(name="increment", strategy="increment")
    public Long getId() {
       return id;
    }
@@ -18,6 +29,7 @@ public class Project {
       this.id = id;
    }
 
+  @Type(type = "string")
    public String getName() {
       return name;
    }
@@ -26,6 +38,7 @@ public class Project {
       this.name = name;
    }
 
+   @Type(type = "string")
    public String getDescription() {
       return description;
    }
