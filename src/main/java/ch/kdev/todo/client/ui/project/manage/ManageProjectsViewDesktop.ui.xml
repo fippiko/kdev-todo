@@ -23,7 +23,7 @@
 		
 		<g:Button ui:field="addProjectButton">Add Project</g:Button>
 		<g:Button ui:field="editProjectButton" enabled="false">Edit Project</g:Button>
-		
+		<g:Button ui:field="deleteProjectButton" enabled="false">Delete Project</g:Button>
 		<br/>
 		<br/>
 		

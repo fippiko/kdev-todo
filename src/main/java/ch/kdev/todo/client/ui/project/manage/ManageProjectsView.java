@@ -4,7 +4,6 @@ import java.util.List;
 
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
 
 public interface ManageProjectsView extends IsWidget {
@@ -12,10 +11,16 @@ public interface ManageProjectsView extends IsWidget {
    void setPresenter(Presenter listener);
 
    public interface Presenter {
-      void goTo(Place place);
-
       void reloadProjectList();
+
+      void deleteSelectedProject();
+
+      void editSelectedProject();
+
+      void addNewProject();
    }
 
    void updateProjectList(List<ProjectProxy> response);
+
+   String getSelectedProjectId();
 }

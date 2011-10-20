@@ -6,7 +6,6 @@ import ch.kdev.todo.server.locator.ProjectServiceLocator;
 import ch.kdev.todo.server.service.ProjectService;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 
-import com.google.web.bindery.requestfactory.shared.InstanceRequest;
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.Service;
@@ -21,9 +20,8 @@ public interface ProjectRequest extends RequestContext {
    Request<ProjectProxy> findProject(Long id);
 
    Request<Void> persist(ProjectProxy project);
-   
-   /*
-    * InstanceRequest<ProjectProxy, Void> remove();
-    */
 
+   Request<Void> delete(ProjectProxy id);
+   
+   Request<Void> delete(Long id);
 }

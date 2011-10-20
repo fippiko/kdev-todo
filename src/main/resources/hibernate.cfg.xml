@@ -8,16 +8,16 @@
 	<session-factory>
 
 		<!-- Database connection settings -->
-		<property name="connection.driver_class">org.postgresql.Driver</property>
-		<property name="connection.url">jdbc:postgresql://localhost/gwt-mvp-prototype</property>
-		<property name="connection.username">postgres</property>
-		<property name="connection.password">password</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://kdev.ch:3306/gwt-mvp-prototype</property>
+		<property name="connection.username">gmp-user</property>
+		<property name="connection.password">.KxS,GnMRhV5sfGt</property>
 
 		<!-- JDBC connection pool (use the built-in) -->
 		<property name="connection.pool_size">1</property>
 
 		<!-- SQL dialect -->
-		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
 		<!-- Enable Hibernate's automatic session context management -->
 		<property name="current_session_context_class">thread</property>
@@ -31,7 +31,9 @@
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">update</property>
 
+
 		<mapping class="ch.kdev.todo.domain.Project" />
+		<mapping class="ch.kdev.todo.domain.Task" />
 
 	</session-factory>
 

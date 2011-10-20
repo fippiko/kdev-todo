@@ -33,6 +33,9 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
 
    @UiField
    Button            addProjectButton;
+   
+   @UiField
+   Button            deleteProjectButton;
 
    public ManageProjectsViewDesktop() {
       initWidget(uiBinder.createAndBindUi(this));
@@ -51,6 +54,7 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
       Boolean itemSelected = projectList.getSelectedIndex() >= 0;
 
       editProjectButton.setEnabled(itemSelected);
+      deleteProjectButton.setEnabled(itemSelected);
    }
 
    private void reloadProjectList() {
@@ -64,13 +68,17 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
 
    @UiHandler("editProjectButton")
    void editProjectButtonClicked(ClickEvent e) {
-      String selectedProject = projectList.getValue(projectList.getSelectedIndex());
-      presenter.goTo(new EditProjectPlace(selectedProject));
+      presenter.editSelectedProject();
    }
-
+   
+   @UiHandler("deleteProjectButton")
+   void deleteProjectButtonClicked(ClickEvent e) {
+      presenter.deleteSelectedProject();
+   }
+ 
    @UiHandler("addProjectButton")
    void addProjectButtonClicked(ClickEvent e) {
-      presenter.goTo(new AddProjectPlace());
+      presenter.addNewProject();
    }
 
    @UiHandler("projectList")
@@ -84,5 +92,11 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
       for (ProjectProxy project : projects) {
          projectList.addItem(project.getName() + " : " + project.getDescription(), String.valueOf(project.getId()));
       }
+   }
+
+   @Override
+   public String getSelectedProjectId() {
+      String selectedProjectId = projectList.getValue(projectList.getSelectedIndex());
+      return selectedProjectId;
    }
 }

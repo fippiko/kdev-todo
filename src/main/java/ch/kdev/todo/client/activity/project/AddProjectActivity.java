@@ -5,7 +5,6 @@ import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.ui.project.add.AddProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
-import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -13,7 +12,6 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.Receiver;
-import com.google.web.bindery.requestfactory.shared.RequestFactory;
 
 public class AddProjectActivity extends AbstractActivity implements AddProjectView.Presenter {
    // Used to obtain views, eventBus, placeController
@@ -23,6 +21,8 @@ public class AddProjectActivity extends AbstractActivity implements AddProjectVi
 
    private AddProjectPlace place;
    private AddProjectView  view;
+   
+   private Boolean manualNavigation;
 
    public AddProjectActivity(AddProjectPlace place, ClientFactory clientFactory) {
       this.clientFactory = clientFactory;
@@ -30,6 +30,8 @@ public class AddProjectActivity extends AbstractActivity implements AddProjectVi
 
       this.place = place;
       this.view = clientFactory.getAddProjectView();
+      
+      this.manualNavigation = false;
    }
 
    /**
@@ -46,14 +48,19 @@ public class AddProjectActivity extends AbstractActivity implements AddProjectVi
     */
    @Override
    public String mayStop() {
-      // TODO check message
-      return "Please hold on. This activity is stopping.";
+      if(manualNavigation){
+         return null;
+      }
+      else{
+         return "Please hold on. This activity is stopping.";
+      }
    }
 
    /**
     * Navigate to a new Place in the browser
     */
    public void goTo(Place place) {
+      manualNavigation = true;
       clientFactory.getPlaceController().goTo(place);
    }
 
@@ -64,12 +71,13 @@ public class AddProjectActivity extends AbstractActivity implements AddProjectVi
 
       newProject.setName(projectName);
       newProject.setDescription(projectDescription);
-      
+
       this.projectRequest.persist(newProject).fire(new Receiver<Void>() {
 
          @Override
          public void onSuccess(Void arg0) {
             goTo(new ManageProjectsPlace());
-         }});
+         }
+      });
    }
 }

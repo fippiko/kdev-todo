@@ -9,9 +9,14 @@ public interface EditProjectView extends IsWidget {
 
    public interface Presenter {
       void goTo(Place place);
+
+      void saveProject(); 
    }
 
    void setPresenter(Presenter listener);
 
    void setProject(ProjectProxy project);
+
+   String getUpdatedProjectName();
+   String getUpdatedProjectDescription();
 }

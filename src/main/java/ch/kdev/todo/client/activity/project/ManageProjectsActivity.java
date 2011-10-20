@@ -3,6 +3,8 @@ package ch.kdev.todo.client.activity.project;
 import java.util.List;
 
 import ch.kdev.todo.client.ClientFactory;
+import ch.kdev.todo.client.place.project.AddProjectPlace;
+import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.ui.project.manage.ManageProjectsView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
@@ -58,5 +60,29 @@ public class ManageProjectsActivity extends AbstractActivity implements ManagePr
             view.updateProjectList(response);
          }
       });
+   }
+
+   @Override
+   public void deleteSelectedProject() {
+      Long projectId = Long.valueOf(this.view.getSelectedProjectId());
+      this.requestFactory.projectRequest().delete(projectId).fire(new Receiver<Void>() {
+
+         @Override
+         public void onSuccess(Void arg0) {
+            reloadProjectList();
+         }
+      });
+   }
+
+   @Override
+   public void editSelectedProject() {
+      String selectedProjectId = this.view.getSelectedProjectId();
+      
+      this.goTo(new EditProjectPlace(selectedProjectId));
+   }
+
+   @Override
+   public void addNewProject() {
+      this.goTo(new AddProjectPlace());
    }
 }
