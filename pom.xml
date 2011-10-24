@@ -89,6 +89,13 @@
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
 		</dependency>
+		
+		<!-- gwt-log -->
+		<dependency>
+			<groupId>com.allen-sauer.gwt.log</groupId>
+			<artifactId>gwt-log</artifactId>
+			<version>3.1.6</version>
+		</dependency>
 
 		<!-- For the servlet filter -->
 		<dependency>

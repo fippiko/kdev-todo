@@ -17,7 +17,7 @@
   <inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
   
   <!-- gwt-log for logging -->
-  <!-- <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />  -->
+  <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" /> 
   	
   <!-- Specify the app entry point class.                         -->
   <entry-point class='ch.kdev.todo.client.Todo'/>

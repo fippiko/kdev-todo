@@ -7,6 +7,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/apt"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
         <property name="context-root" value="gwt-mvp-prototype"/>
         <property name="java-output-path" value="/gwt-mvp-prototype/target/gwt-mvp-prototype-0.1.0/WEB-INF/classes"/>
     </wb-module>

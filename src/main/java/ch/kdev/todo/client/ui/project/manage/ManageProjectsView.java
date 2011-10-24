@@ -18,6 +18,8 @@ public interface ManageProjectsView extends IsWidget {
       void editSelectedProject();
 
       void addNewProject();
+
+      void viewSelectedProject();
    }
 
    void updateProjectList(List<ProjectProxy> response);

@@ -18,12 +18,12 @@ public class ProjectLocator extends Locator<Project, Long> {
 
    @Override
    public Class<Long> getIdType() {
-      return long.class;
+      return Long.class;
    }
 
    @Override
    public Object getVersion(Project domainObject) {
-      return 1;
+      return domainObject.getVersion();
    }
 
    @Override

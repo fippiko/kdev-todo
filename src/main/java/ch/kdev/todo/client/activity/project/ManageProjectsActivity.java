@@ -6,6 +6,7 @@ import ch.kdev.todo.client.ClientFactory;
 import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
+import ch.kdev.todo.client.place.project.ViewProjectPlace;
 import ch.kdev.todo.client.ui.project.manage.ManageProjectsView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
@@ -84,5 +85,12 @@ public class ManageProjectsActivity extends AbstractActivity implements ManagePr
    @Override
    public void addNewProject() {
       this.goTo(new AddProjectPlace());
+   }
+
+   @Override
+   public void viewSelectedProject() {
+      String selectedProjectId = this.view.getSelectedProjectId();
+      
+      this.goTo(new ViewProjectPlace(selectedProjectId));
    }
 }

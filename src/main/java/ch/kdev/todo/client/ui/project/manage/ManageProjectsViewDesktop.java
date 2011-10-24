@@ -27,6 +27,9 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
 
    @UiField
    ListBox           projectList;
+   
+   @UiField
+   Button            viewProjectButton;
 
    @UiField
    Button            editProjectButton;
@@ -53,6 +56,7 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
    private void enableWidgets() {
       Boolean itemSelected = projectList.getSelectedIndex() >= 0;
 
+      viewProjectButton.setEnabled(itemSelected);
       editProjectButton.setEnabled(itemSelected);
       deleteProjectButton.setEnabled(itemSelected);
    }
@@ -66,6 +70,11 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
       this.presenter = presenter;
    }
 
+   @UiHandler("viewProjectButton")
+   void viewProjectButtonClicked(ClickEvent e){
+      presenter.viewSelectedProject();
+   }
+   
    @UiHandler("editProjectButton")
    void editProjectButtonClicked(ClickEvent e) {
       presenter.editSelectedProject();

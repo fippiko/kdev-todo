@@ -5,6 +5,7 @@ import ch.kdev.todo.client.ui.mainmenu.MainMenuView;
 import ch.kdev.todo.client.ui.project.add.AddProjectView;
 import ch.kdev.todo.client.ui.project.edit.EditProjectView;
 import ch.kdev.todo.client.ui.project.manage.ManageProjectsView;
+import ch.kdev.todo.client.ui.project.view.ViewProjectView;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 
 import com.google.gwt.inject.client.Ginjector;
@@ -23,10 +24,14 @@ public interface ClientFactory extends Ginjector {
    ManageProjectsView getManageProjectsView();
 
    MainMenuView getMainMenuView();
+   
+   ViewProjectView getViewProjectView();
 
    EditProjectView getEditProjectView();
 
    AddProjectView getAddProjectView();
 
    AppLayout getAppLayout();
+
+   
 }

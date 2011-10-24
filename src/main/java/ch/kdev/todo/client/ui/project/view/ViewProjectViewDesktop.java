@@ -1,5 +1,6 @@
-package ch.kdev.todo.client.ui.project.edit;
+package ch.kdev.todo.client.ui.project.view;
 
+import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 
 import com.google.gwt.core.client.GWT;
@@ -13,10 +14,10 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class EditProjectViewDesktop extends Composite implements EditProjectView {
+public class ViewProjectViewDesktop extends Composite implements ViewProjectView {
    private static EditProjectDesktopUiBinder uiBinder = GWT.create(EditProjectDesktopUiBinder.class);
 
-   interface EditProjectDesktopUiBinder extends UiBinder<Widget, EditProjectViewDesktop> {
+   interface EditProjectDesktopUiBinder extends UiBinder<Widget, ViewProjectViewDesktop> {
    }
 
    private Presenter presenter;
@@ -28,9 +29,9 @@ public class EditProjectViewDesktop extends Composite implements EditProjectView
    TextArea          projectDescriptionTextArea;
 
    @UiField
-   Button            updateProjectButton;
+   Button            editProjectButton;
 
-   public EditProjectViewDesktop() {
+   public ViewProjectViewDesktop() {
       initWidget(uiBinder.createAndBindUi(this));
    }
 
@@ -39,23 +40,16 @@ public class EditProjectViewDesktop extends Composite implements EditProjectView
       this.presenter = presenter;
    }
 
+   
+   @UiHandler("editProjectButton")
+   public void updateProjectButtonClicked(ClickEvent e){
+      this.presenter.editProject();
+   }
+
    @Override
    public void setProjectAttributes(ProjectProxy project) {
       this.projectNameTextBox.setText(project.getName());
       this.projectDescriptionTextArea.setText(project.getDescription());
-   }
-   
-   @UiHandler("updateProjectButton")
-   public void updateProjectButtonClicked(ClickEvent e){
-      presenter.saveProject();
-   }
-
-   @Override
-   public ProjectProxy getProjectAttributes(ProjectProxy editableProject) {
-      editableProject.setName(this.projectNameTextBox.getText());
-      editableProject.setDescription(this.projectDescriptionTextArea.getText());
-      
-      return editableProject;
    }
 
 }

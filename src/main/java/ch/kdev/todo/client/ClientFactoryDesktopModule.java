@@ -10,6 +10,8 @@ import ch.kdev.todo.client.ui.project.edit.EditProjectView;
 import ch.kdev.todo.client.ui.project.edit.EditProjectViewDesktop;
 import ch.kdev.todo.client.ui.project.manage.ManageProjectsView;
 import ch.kdev.todo.client.ui.project.manage.ManageProjectsViewDesktop;
+import ch.kdev.todo.client.ui.project.view.ViewProjectView;
+import ch.kdev.todo.client.ui.project.view.ViewProjectViewDesktop;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 
 import com.google.gwt.inject.client.AbstractGinModule;
@@ -35,6 +37,7 @@ public class ClientFactoryDesktopModule extends AbstractGinModule {
       bind(MainMenuView.Presenter.class).to(AppPresenter.class);
 
       bind(ManageProjectsView.class).to(ManageProjectsViewDesktop.class).in(Singleton.class);
+      bind(ViewProjectView.class).to(ViewProjectViewDesktop.class);
       bind(AddProjectView.class).to(AddProjectViewDesktop.class);
       bind(EditProjectView.class).to(EditProjectViewDesktop.class);
    }

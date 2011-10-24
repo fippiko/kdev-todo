@@ -5,6 +5,7 @@ import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
 import ch.kdev.todo.client.ui.project.edit.EditProjectView;
+import ch.kdev.todo.client.ui.project.view.ViewProjectView;
 import ch.kdev.todo.domain.Project;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
@@ -16,25 +17,25 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
-public class EditProjectActivity extends AbstractActivity implements EditProjectView.Presenter {
+public class ViewProjectActivity extends AbstractActivity implements ViewProjectView.Presenter {
    // Used to obtain views, eventBus, placeController
    // Alternatively, could be injected via GIN
    private ClientFactory     clientFactory;
    private AppRequestFactory requestFactory;
 
-   private EditProjectPlace  place;
-   private EditProjectView   view;
+   private ViewProjectPlace  place;
+   private ViewProjectView   view;
 
    private Boolean           manualNavigation;
 
    private ProjectProxy      project;
 
-   public EditProjectActivity(EditProjectPlace place, ClientFactory clientFactory) {
+   public ViewProjectActivity(ViewProjectPlace place, ClientFactory clientFactory) {
       this.clientFactory = clientFactory;
       this.requestFactory = clientFactory.getRequestFactory();
       this.place = place;
 
-      this.view = clientFactory.getEditProjectView();
+      this.view = clientFactory.getViewProjectView();
       this.loadProject(place.getProjectID());
 
       this.manualNavigation = false;
@@ -83,18 +84,7 @@ public class EditProjectActivity extends AbstractActivity implements EditProject
    }
 
    @Override
-   public void saveProject() {
-      ProjectRequest projectRequest = requestFactory.projectRequest();
-
-      ProjectProxy editableProject = projectRequest.edit(this.project);
-      editableProject = this.view.getProjectAttributes(editableProject);
-
-      projectRequest.update(editableProject.getId(), editableProject).fire(new Receiver<Void>() {
-
-         @Override
-         public void onSuccess(Void response) {
-            goTo(new ViewProjectPlace(project.getId().toString()));
-         }
-      });
+   public void editProject() {
+      this.goTo(new EditProjectPlace(this.place.getProjectID()));
    }
 }

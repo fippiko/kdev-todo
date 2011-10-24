@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -15,12 +16,14 @@ import org.hibernate.annotations.Type;
 @Table(name = "projects")
 public class Project {
    private Long       id;
+   private Long       version;
    private String     name;
    private String     description;
 
    private List<Task> tasks;
 
    public Project() {
+      this.version = (long) 1;
    }
 
    @Id
@@ -63,5 +66,20 @@ public class Project {
 
    public void addTask(Task task) {
       this.tasks.add(task);
+   }
+
+   
+   public void setVersion(Long version){
+      this.version = version;
+   }
+
+   public Long getVersion() {
+      return this.version;
+   }
+   
+   @PrePersist
+   void onPersist()
+   {
+      this.version++;
    }
 }
