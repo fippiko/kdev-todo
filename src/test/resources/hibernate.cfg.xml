@@ -9,7 +9,7 @@
 
 		<!-- Database connection settings -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://kdev.ch:3306/gwt-mvp-prototype-test</property>
+		<property name="connection.url">jdbc:mysql://dbserver:3306/gwt-mvp-prototype-test</property>
 		<property name="connection.username">gmp-user</property>
 		<property name="connection.password">.KxS,GnMRhV5sfGt</property>
 
