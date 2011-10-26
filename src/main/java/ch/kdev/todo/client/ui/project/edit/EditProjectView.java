@@ -10,7 +10,7 @@ public interface EditProjectView extends IsWidget {
    public interface Presenter {
       void goTo(Place place);
 
-      void saveProject(); 
+      void saveProject();
    }
 
    void setPresenter(Presenter listener);

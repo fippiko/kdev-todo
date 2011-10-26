@@ -1,6 +1,5 @@
 package ch.kdev.todo.client.ui.project.view;
 
-import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 
 import com.google.gwt.core.client.GWT;
@@ -40,10 +39,14 @@ public class ViewProjectViewDesktop extends Composite implements ViewProjectView
       this.presenter = presenter;
    }
 
-   
    @UiHandler("editProjectButton")
-   public void updateProjectButtonClicked(ClickEvent e){
+   public void updateProjectButtonClicked(ClickEvent e) {
       this.presenter.editProject();
+   }
+
+   @UiHandler("manageProjectsButton")
+   void manageProjectsButtonClicked(ClickEvent e) {
+      this.presenter.manageProjects();
    }
 
    @Override

@@ -44,9 +44,9 @@ public class EditProjectViewDesktop extends Composite implements EditProjectView
       this.projectNameTextBox.setText(project.getName());
       this.projectDescriptionTextArea.setText(project.getDescription());
    }
-   
+
    @UiHandler("updateProjectButton")
-   public void updateProjectButtonClicked(ClickEvent e){
+   public void updateProjectButtonClicked(ClickEvent e) {
       presenter.saveProject();
    }
 
@@ -54,7 +54,7 @@ public class EditProjectViewDesktop extends Composite implements EditProjectView
    public ProjectProxy getProjectAttributes(ProjectProxy editableProject) {
       editableProject.setName(this.projectNameTextBox.getText());
       editableProject.setDescription(this.projectDescriptionTextArea.getText());
-      
+
       return editableProject;
    }
 

@@ -68,18 +68,16 @@ public class Project {
       this.tasks.add(task);
    }
 
-   
-   public void setVersion(Long version){
+   public void setVersion(Long version) {
       this.version = version;
    }
 
    public Long getVersion() {
       return this.version;
    }
-   
+
    @PrePersist
-   void onPersist()
-   {
+   void onPersist() {
       this.version++;
    }
 }

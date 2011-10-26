@@ -20,11 +20,11 @@ public interface ProjectRequest extends RequestContext {
    Request<ProjectProxy> findProject(Long id);
 
    Request<Void> persist(ProjectProxy project);
-   
+
    Request<Void> update(Long id, ProjectProxy project);
 
    Request<Void> delete(ProjectProxy id);
-   
+
    Request<Void> delete(Long id);
-  
+
 }

@@ -31,7 +31,11 @@
 			
 			<tr>
 				<td></td>
-				<td><g:Button ui:field="editProjectButton">Edit Project</g:Button></td>
+				
+				<td>
+					<g:Button ui:field='manageProjectsButton'>Manage Projects</g:Button>
+					<g:Button ui:field="editProjectButton">Edit Project</g:Button>
+				</td>
 			</tr>
 		</table>
 	</g:HTMLPanel>

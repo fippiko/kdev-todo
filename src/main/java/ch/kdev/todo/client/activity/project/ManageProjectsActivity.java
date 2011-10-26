@@ -3,6 +3,7 @@ package ch.kdev.todo.client.activity.project;
 import java.util.List;
 
 import ch.kdev.todo.client.ClientFactory;
+import ch.kdev.todo.client.activity.BasePresenter;
 import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
@@ -11,28 +12,31 @@ import ch.kdev.todo.client.ui.project.manage.ManageProjectsView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 
-import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
-public class ManageProjectsActivity extends AbstractActivity implements ManageProjectsView.Presenter {
+public class ManageProjectsActivity extends BasePresenter implements ManageProjectsView.Presenter {
    // Used to obtain views, eventBus, placeController
    // Alternatively, could be injected via GIN
-   private ClientFactory       clientFactory;
    private AppRequestFactory   requestFactory;
 
    @SuppressWarnings("unused")
    private ManageProjectsPlace place;
    private ManageProjectsView  view;
 
-   public ManageProjectsActivity(ManageProjectsPlace place, ClientFactory clientFactory) {
-      this.clientFactory = clientFactory;
-      this.requestFactory = clientFactory.getRequestFactory();
-      this.place = place;
+   @Inject
+   public ManageProjectsActivity(ManageProjectsView view, ClientFactory clientFactory) {
+      super(clientFactory);
 
-      this.view = clientFactory.getManageProjectsView();
+      this.requestFactory = clientFactory.getRequestFactory();
+      this.view = view;
+   }
+   
+   public ManageProjectsActivity withPlace(ManageProjectsPlace place){
+      this.place = place;
+      return this;
    }
 
    /**
@@ -42,13 +46,6 @@ public class ManageProjectsActivity extends AbstractActivity implements ManagePr
    public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
       this.view.setPresenter(this);
       containerWidget.setWidget(this.view.asWidget());
-   }
-
-   /**
-    * Navigate to a new Place in the browser
-    */
-   public void goTo(Place place) {
-      clientFactory.getPlaceController().goTo(place);
    }
 
    @Override
@@ -78,7 +75,7 @@ public class ManageProjectsActivity extends AbstractActivity implements ManagePr
    @Override
    public void editSelectedProject() {
       String selectedProjectId = this.view.getSelectedProjectId();
-      
+
       this.goTo(new EditProjectPlace(selectedProjectId));
    }
 
@@ -90,7 +87,7 @@ public class ManageProjectsActivity extends AbstractActivity implements ManagePr
    @Override
    public void viewSelectedProject() {
       String selectedProjectId = this.view.getSelectedProjectId();
-      
+
       this.goTo(new ViewProjectPlace(selectedProjectId));
    }
 }

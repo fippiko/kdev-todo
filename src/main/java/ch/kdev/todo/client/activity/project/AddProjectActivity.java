@@ -1,37 +1,36 @@
 package ch.kdev.todo.client.activity.project;
 
 import ch.kdev.todo.client.ClientFactory;
+import ch.kdev.todo.client.activity.BasePresenter;
 import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.ui.project.add.AddProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 
-import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
-public class AddProjectActivity extends AbstractActivity implements AddProjectView.Presenter {
+public class AddProjectActivity extends BasePresenter implements AddProjectView.Presenter {
    // Used to obtain views, eventBus, placeController
    // Alternatively, could be injected via GIN
-   private ClientFactory   clientFactory;
    private ProjectRequest  projectRequest;
 
    private AddProjectPlace place;
    private AddProjectView  view;
    
-   private Boolean manualNavigation;
+   public AddProjectActivity(AddProjectView view, ClientFactory clientFactory) {
+      super(clientFactory);
 
-   public AddProjectActivity(AddProjectPlace place, ClientFactory clientFactory) {
-      this.clientFactory = clientFactory;
       this.projectRequest = clientFactory.getRequestFactory().projectRequest();
 
+      this.view = view;
+   }
+   
+   public AddProjectActivity withPlace(AddProjectPlace place){
       this.place = place;
-      this.view = clientFactory.getAddProjectView();
-      
-      this.manualNavigation = false;
+      return this;
    }
 
    /**
@@ -48,20 +47,12 @@ public class AddProjectActivity extends AbstractActivity implements AddProjectVi
     */
    @Override
    public String mayStop() {
-      if(manualNavigation){
+      if (this.isManualNavigation()) {
          return null;
       }
-      else{
+      else {
          return "Please hold on. This activity is stopping.";
       }
-   }
-
-   /**
-    * Navigate to a new Place in the browser
-    */
-   public void goTo(Place place) {
-      manualNavigation = true;
-      clientFactory.getPlaceController().goTo(place);
    }
 
    @Override

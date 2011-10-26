@@ -14,7 +14,7 @@ public class TodoGwtTest extends GWTTestCase {
       ClientFactoryDesktop clientFactory = GWT.create(ClientFactoryDesktop.class);
 
       assertNotNull(clientFactory);
-      assertNotNull(clientFactory.getAppController());
+      assertNotNull(clientFactory.getAppPresenter());
       assertNotNull(clientFactory.getAppLayout());
       assertNotNull(clientFactory.getEventBus());
       assertNotNull(clientFactory.getPlaceController());
@@ -23,7 +23,7 @@ public class TodoGwtTest extends GWTTestCase {
       // test the views
       assertNotNull(clientFactory.getMainMenuView());
       assertNotNull(clientFactory.getAddProjectView());
-      assertNotNull(clientFactory.getManageProjectsView());
+      //assertNotNull(clientFactory.getManageProjectsView());
       assertNotNull(clientFactory.getEditProjectView());
    }
 }

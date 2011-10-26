@@ -16,6 +16,5 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/gwt-mvp-prototype-0.1.0/WEB-INF/classes" path="resources"/>
 	<classpathentry kind="output" path="target/gwt-mvp-prototype-0.1.0/WEB-INF/classes"/>
 </classpath>

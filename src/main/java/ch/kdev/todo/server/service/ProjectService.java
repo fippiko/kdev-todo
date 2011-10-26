@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import com.allen_sauer.gwt.log.client.Log;
-
 import ch.kdev.todo.domain.Project;
 import ch.kdev.todo.server.database.HibernateUtil;
+
+import com.allen_sauer.gwt.log.client.Log;
 
 /**
  * @author fippiko
@@ -17,7 +17,7 @@ public class ProjectService {
 
    public void persist(Project project) {
       Log.debug("ProjectService: persisting project");
-      
+
       Session session = HibernateUtil.getNewSession();
 
       session.save(project);
@@ -35,29 +35,23 @@ public class ProjectService {
     *        Updates a existing project with the new values
     */
    public void update(Long id, Project project) {
-      Log.debug("ProjectService: update project ID:"+id);
-      
+      Log.debug("ProjectService: update project ID:" + id);
+
       Project existingProject = findProject(id);
-      
+
+      existingProject = (Project) ServiceHelper.mergeObjectWithDelta(Project.class, existingProject, project);
+      existingProject.setVersion(existingProject.getVersion() + 1);
+
       Session session = HibernateUtil.getNewSession();
 
-      session.clear();
-      
-      if(project.getName() != null){
-         existingProject.setName(project.getName());
-      }
-      if(project.getDescription() != null){
-         existingProject.setDescription(project.getDescription());
-      }
-      
       session.update(existingProject);
 
       session.getTransaction().commit();
    }
 
    public void delete(Long id) {
-      Log.debug("ProjectService: delete project ID:"+id);
-      
+      Log.debug("ProjectService: delete project ID:" + id);
+
       Project tempProject = new Project();
 
       tempProject.setId(id);
@@ -66,8 +60,8 @@ public class ProjectService {
    }
 
    public void delete(Project project) {
-      Log.debug("ProjectService: delete project ID:"+project.getId());
-      
+      Log.debug("ProjectService: delete project ID:" + project.getId());
+
       Session session = HibernateUtil.getNewSession();
 
       session.delete(project);
@@ -77,7 +71,7 @@ public class ProjectService {
 
    public Integer countProjects() {
       Log.debug("ProjectService: count projects");
-      
+
       Session session = HibernateUtil.getNewSession();
 
       int count = ((Long) session.createQuery("select count(*) from Project").uniqueResult()).intValue();

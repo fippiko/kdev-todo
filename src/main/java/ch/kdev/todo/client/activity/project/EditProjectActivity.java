@@ -1,43 +1,36 @@
 package ch.kdev.todo.client.activity.project;
 
 import ch.kdev.todo.client.ClientFactory;
+import ch.kdev.todo.client.activity.BasePresenter;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
-import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
 import ch.kdev.todo.client.ui.project.edit.EditProjectView;
-import ch.kdev.todo.domain.Project;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 
-import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
-public class EditProjectActivity extends AbstractActivity implements EditProjectView.Presenter {
+public class EditProjectActivity extends BasePresenter implements EditProjectView.Presenter {
    // Used to obtain views, eventBus, placeController
    // Alternatively, could be injected via GIN
-   private ClientFactory     clientFactory;
    private AppRequestFactory requestFactory;
 
    private EditProjectPlace  place;
    private EditProjectView   view;
 
-   private Boolean           manualNavigation;
-
    private ProjectProxy      project;
 
    public EditProjectActivity(EditProjectPlace place, ClientFactory clientFactory) {
-      this.clientFactory = clientFactory;
+      super(clientFactory);
+
       this.requestFactory = clientFactory.getRequestFactory();
       this.place = place;
 
       this.view = clientFactory.getEditProjectView();
       this.loadProject(place.getProjectID());
-
-      this.manualNavigation = false;
    }
 
    private void loadProject(String projectID) {
@@ -66,20 +59,12 @@ public class EditProjectActivity extends AbstractActivity implements EditProject
     */
    @Override
    public String mayStop() {
-      if (manualNavigation) {
+      if (this.isManualNavigation()) {
          return null;
       }
       else {
          return "Please hold on. This activity is stopping.";
       }
-   }
-
-   /**
-    * Navigate to a new Place in the browser
-    */
-   public void goTo(Place place) {
-      this.manualNavigation = true;
-      clientFactory.getPlaceController().goTo(place);
    }
 
    @Override

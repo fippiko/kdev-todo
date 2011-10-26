@@ -2,8 +2,6 @@ package ch.kdev.todo.client.ui.project.manage;
 
 import java.util.List;
 
-import ch.kdev.todo.client.place.project.AddProjectPlace;
-import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 
 import com.google.gwt.core.client.GWT;
@@ -27,7 +25,7 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
 
    @UiField
    ListBox           projectList;
-   
+
    @UiField
    Button            viewProjectButton;
 
@@ -36,7 +34,7 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
 
    @UiField
    Button            addProjectButton;
-   
+
    @UiField
    Button            deleteProjectButton;
 
@@ -71,20 +69,20 @@ public class ManageProjectsViewDesktop extends Composite implements ManageProjec
    }
 
    @UiHandler("viewProjectButton")
-   void viewProjectButtonClicked(ClickEvent e){
+   void viewProjectButtonClicked(ClickEvent e) {
       presenter.viewSelectedProject();
    }
-   
+
    @UiHandler("editProjectButton")
    void editProjectButtonClicked(ClickEvent e) {
       presenter.editSelectedProject();
    }
-   
+
    @UiHandler("deleteProjectButton")
    void deleteProjectButtonClicked(ClickEvent e) {
       presenter.deleteSelectedProject();
    }
- 
+
    @UiHandler("addProjectButton")
    void addProjectButtonClicked(ClickEvent e) {
       presenter.addNewProject();
