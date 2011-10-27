@@ -1,34 +1,36 @@
 package ch.kdev.todo.client.activity.project;
 
-import ch.kdev.todo.client.ClientFactory;
-import ch.kdev.todo.client.activity.BasePresenter;
+import ch.kdev.todo.client.activity.BaseActivity;
 import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
-import ch.kdev.todo.client.ui.project.add.AddProjectView;
+import ch.kdev.todo.client.view.project.add.AddProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
-public class AddProjectActivity extends BasePresenter implements AddProjectView.Presenter {
+public class AddProjectActivity extends BaseActivity implements AddProjectView.Presenter {
    // Used to obtain views, eventBus, placeController
    // Alternatively, could be injected via GIN
+
+   @Inject
    private ProjectRequest  projectRequest;
 
+   @SuppressWarnings("unused")
    private AddProjectPlace place;
+
+   @Inject
    private AddProjectView  view;
-   
-   public AddProjectActivity(AddProjectView view, ClientFactory clientFactory) {
-      super(clientFactory);
 
-      this.projectRequest = clientFactory.getRequestFactory().projectRequest();
+   public AddProjectActivity() {
 
-      this.view = view;
    }
-   
-   public AddProjectActivity withPlace(AddProjectPlace place){
+
+   public AddProjectActivity withPlace(AddProjectPlace place) {
       this.place = place;
       return this;
    }
@@ -57,7 +59,6 @@ public class AddProjectActivity extends BasePresenter implements AddProjectView.
 
    @Override
    public void addNewProject(String projectName, String projectDescription) {
-
       ProjectProxy newProject = this.projectRequest.create(ProjectProxy.class);
 
       newProject.setName(projectName);
@@ -68,6 +69,12 @@ public class AddProjectActivity extends BasePresenter implements AddProjectView.
          @Override
          public void onSuccess(Void arg0) {
             goTo(new ManageProjectsPlace());
+         }
+         
+         @Override
+         public void onFailure(ServerFailure error) {
+            // TODO Auto-generated method stub
+            super.onFailure(error);
          }
       });
    }

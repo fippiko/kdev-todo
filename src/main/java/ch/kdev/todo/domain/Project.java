@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "projects")
@@ -38,6 +40,8 @@ public class Project {
    }
 
    @Type(type = "string")
+   @NotEmpty(message="Please insert a name")
+   @Length(max=50)
    public String getName() {
       return name;
    }
@@ -47,6 +51,7 @@ public class Project {
    }
 
    @Type(type = "string")
+   @Length(max=250)
    public String getDescription() {
       return description;
    }

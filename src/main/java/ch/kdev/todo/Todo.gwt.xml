@@ -26,6 +26,7 @@
   <!-- <replace-with class="ch.kdev.todo.client.ClientFactoryDesktop">
     <when-type-is class="ch.kdev.todo.client.ClientFactory"/>
   </replace-with> -->
+  
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>

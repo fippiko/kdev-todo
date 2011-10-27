@@ -2,13 +2,12 @@ package ch.kdev.todo.client.activity.project;
 
 import java.util.List;
 
-import ch.kdev.todo.client.ClientFactory;
-import ch.kdev.todo.client.activity.BasePresenter;
+import ch.kdev.todo.client.activity.BaseActivity;
 import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
-import ch.kdev.todo.client.ui.project.manage.ManageProjectsView;
+import ch.kdev.todo.client.view.project.manage.ManageProjectsView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 
@@ -17,24 +16,21 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
-public class ManageProjectsActivity extends BasePresenter implements ManageProjectsView.Presenter {
-   // Used to obtain views, eventBus, placeController
-   // Alternatively, could be injected via GIN
-   private AppRequestFactory   requestFactory;
+public class ManageProjectsActivity extends BaseActivity implements ManageProjectsView.Presenter {
+
+   // @Inject
+   // private AppRequestFactory requestFactory;
+
+   @Inject
+   AppRequestFactory           requestFactory;
 
    @SuppressWarnings("unused")
    private ManageProjectsPlace place;
-   private ManageProjectsView  view;
 
    @Inject
-   public ManageProjectsActivity(ManageProjectsView view, ClientFactory clientFactory) {
-      super(clientFactory);
+   private ManageProjectsView  view;
 
-      this.requestFactory = clientFactory.getRequestFactory();
-      this.view = view;
-   }
-   
-   public ManageProjectsActivity withPlace(ManageProjectsPlace place){
+   public ManageProjectsActivity withPlace(ManageProjectsPlace place) {
       this.place = place;
       return this;
    }
@@ -50,7 +46,6 @@ public class ManageProjectsActivity extends BasePresenter implements ManageProje
 
    @Override
    public void reloadProjectList() {
-
       this.requestFactory.projectRequest().findAll().fire(new Receiver<List<ProjectProxy>>() {
 
          @Override
@@ -63,6 +58,7 @@ public class ManageProjectsActivity extends BasePresenter implements ManageProje
    @Override
    public void deleteSelectedProject() {
       Long projectId = Long.valueOf(this.view.getSelectedProjectId());
+
       this.requestFactory.projectRequest().delete(projectId).fire(new Receiver<Void>() {
 
          @Override

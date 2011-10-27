@@ -8,7 +8,6 @@ import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
-
 public class AppPlaceHistoryHandler extends PlaceHistoryHandler {
 
    @Inject
@@ -16,9 +15,11 @@ public class AppPlaceHistoryHandler extends PlaceHistoryHandler {
       super(mapper);
    }
 
-   @Inject
+   // @Inject
    @Override
    public HandlerRegistration register(PlaceController placeController, EventBus eventBus, Place defaultPlace) {
       return super.register(placeController, eventBus, defaultPlace);
+
+      // TODO Temporary!!!
    }
 }

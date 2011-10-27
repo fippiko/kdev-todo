@@ -2,6 +2,8 @@ package ch.kdev.todo.server.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.hibernate.Session;
 
 import ch.kdev.todo.domain.Project;
@@ -44,7 +46,7 @@ public class ProjectService {
 
       Session session = HibernateUtil.getNewSession();
 
-      session.update(existingProject);
+      session.saveOrUpdate(existingProject);
 
       session.getTransaction().commit();
    }

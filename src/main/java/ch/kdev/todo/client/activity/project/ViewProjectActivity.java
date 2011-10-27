@@ -1,45 +1,41 @@
 package ch.kdev.todo.client.activity.project;
 
-import ch.kdev.todo.client.ClientFactory;
-import ch.kdev.todo.client.activity.BasePresenter;
+import ch.kdev.todo.client.activity.BaseActivity;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
-import ch.kdev.todo.client.ui.project.view.ViewProjectView;
+import ch.kdev.todo.client.view.project.view.ViewProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
-import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
+import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
-public class ViewProjectActivity extends BasePresenter implements ViewProjectView.Presenter {
-   // Used to obtain views, eventBus, placeController
-   // Alternatively, could be injected via GIN
-   private AppRequestFactory requestFactory;
+public class ViewProjectActivity extends BaseActivity implements ViewProjectView.Presenter {
 
-   private ViewProjectPlace  place;
-   private ViewProjectView   view;
+   @Inject
+   private ProjectRequest   projectRequest;
 
-   private ProjectProxy      project;
+   @Inject
+   private ViewProjectView  view;
 
-   public ViewProjectActivity(ViewProjectPlace place, ClientFactory clientFactory) {
-      super(clientFactory);
+   private ViewProjectPlace place;
 
-      this.requestFactory = clientFactory.getRequestFactory();
+   public ViewProjectActivity withPlace(ViewProjectPlace place) {
       this.place = place;
-
-      this.view = clientFactory.getViewProjectView();
       this.loadProject(place.getProjectID());
+
+      return this;
    }
 
    private void loadProject(String projectID) {
       long projectIdAsLong = Integer.valueOf(projectID);
-      this.requestFactory.projectRequest().findProject(projectIdAsLong).fire(new Receiver<ProjectProxy>() {
+      projectRequest.findProject(projectIdAsLong).fire(new Receiver<ProjectProxy>() {
 
          @Override
          public void onSuccess(ProjectProxy receivedProject) {
-            project = receivedProject;
             view.setProjectAttributes(receivedProject);
          }
       });
