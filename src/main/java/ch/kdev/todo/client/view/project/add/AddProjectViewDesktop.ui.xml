@@ -22,7 +22,8 @@
 		<table>
 			<tr>
 				<td><g:Label>Name:</g:Label></td>
-				<td><g:TextBox ui:field="projectNameTextBox" styleName="{style.nameTextBox}"></g:TextBox></td>
+				<td><g:TextBox ui:field="projectNameTextBox" name="name" styleName="{style.nameTextBox}"></g:TextBox></td>
+				<td><g:Label  ui:field="projectNameErrorLabel"></g:Label></td>
 			</tr>
 			<tr>
 				<td><g:Label>Description:</g:Label></td>

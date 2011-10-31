@@ -8,9 +8,13 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
+
+import eu.maydu.gwt.validation.client.ValidationProcessor;
 
 public class AddProjectViewDesktop extends BaseView<AddProjectView.Presenter> implements AddProjectView {
    private static AddProjectDesktopUiBinder uiBinder = GWT.create(AddProjectDesktopUiBinder.class);
@@ -18,8 +22,14 @@ public class AddProjectViewDesktop extends BaseView<AddProjectView.Presenter> im
    interface AddProjectDesktopUiBinder extends UiBinder<Widget, AddProjectViewDesktop> {
    }
 
+   @Inject
+   ValidationProcessor validator;
+   
    @UiField
    TextBox  projectNameTextBox;
+   
+   @UiField
+   Label projectNameErrorLabel;
 
    @UiField
    TextArea projectDescriptionTextArea;
@@ -27,22 +37,16 @@ public class AddProjectViewDesktop extends BaseView<AddProjectView.Presenter> im
    @UiField
    Button   addProjectButton;
 
-   public AddProjectViewDesktop() {
+   public AddProjectViewDesktop() {           
       initWidget(uiBinder.createAndBindUi(this));
    }
+   
 
    @UiHandler("addProjectButton")
    void addProjectButtonClicked(ClickEvent e) {
       String projectName = projectNameTextBox.getText();
       String projectDescription = projectDescriptionTextArea.getText();
 
-      this.validateForm();
-
       this.getPresenter().addNewProject(projectName, projectDescription);
-   }
-
-   private void validateForm() {
-      // TODO Auto-generated method stub
-
    }
 }

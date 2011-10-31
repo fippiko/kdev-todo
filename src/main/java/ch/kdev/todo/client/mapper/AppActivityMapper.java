@@ -14,7 +14,7 @@ import com.google.inject.Inject;
 public class AppActivityMapper implements ActivityMapper {
 
    @Inject
-   private ActivityFactory activityProvider;
+   private ActivityFactory activityFactory;
 
    /**
     * Map each Place to its corresponding Activity.
@@ -23,16 +23,16 @@ public class AppActivityMapper implements ActivityMapper {
    public Activity getActivity(Place place) {
 
       if (place instanceof ManageProjectsPlace) {
-         return this.activityProvider.getManageProjectsActivity().withPlace((ManageProjectsPlace) place);
+         return this.activityFactory.getManageProjectsActivity().withPlace((ManageProjectsPlace) place);
       }
       if (place instanceof ViewProjectPlace) {
-         return this.activityProvider.getViewProjectActivity().withPlace((ViewProjectPlace) place);
+         return this.activityFactory.getViewProjectActivity().withPlace((ViewProjectPlace) place);
       }
       if (place instanceof EditProjectPlace) {
-         return this.activityProvider.getEditProjectActivity().withPlace((EditProjectPlace) place);
+         return this.activityFactory.getEditProjectActivity().withPlace((EditProjectPlace) place);
       }
       if (place instanceof AddProjectPlace) {
-         return this.activityProvider.getAddProjectActivity().withPlace((AddProjectPlace) place);
+         return this.activityFactory.getAddProjectActivity().withPlace((AddProjectPlace) place);
       }
 
       return null;

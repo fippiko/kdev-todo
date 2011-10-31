@@ -3,6 +3,7 @@ package ch.kdev.todo.client.activity.project;
 import ch.kdev.todo.client.activity.BaseActivity;
 import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
+import ch.kdev.todo.client.view.ViewFactory;
 import ch.kdev.todo.client.view.project.add.AddProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
@@ -14,20 +15,18 @@ import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class AddProjectActivity extends BaseActivity implements AddProjectView.Presenter {
-   // Used to obtain views, eventBus, placeController
-   // Alternatively, could be injected via GIN
-
    @Inject
    private ProjectRequest  projectRequest;
 
    @SuppressWarnings("unused")
    private AddProjectPlace place;
 
-   @Inject
+   //@Inject
    private AddProjectView  view;
 
-   public AddProjectActivity() {
-
+   @Inject
+   public AddProjectActivity(ViewFactory viewFactory){
+      this.view = viewFactory.getAddProjectView();
    }
 
    public AddProjectActivity withPlace(AddProjectPlace place) {

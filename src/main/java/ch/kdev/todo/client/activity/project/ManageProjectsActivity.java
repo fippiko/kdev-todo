@@ -7,6 +7,7 @@ import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
+import ch.kdev.todo.client.view.ViewFactory;
 import ch.kdev.todo.client.view.project.manage.ManageProjectsView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
@@ -18,17 +19,18 @@ import com.google.web.bindery.requestfactory.shared.Receiver;
 
 public class ManageProjectsActivity extends BaseActivity implements ManageProjectsView.Presenter {
 
-   // @Inject
-   // private AppRequestFactory requestFactory;
-
    @Inject
    AppRequestFactory           requestFactory;
 
    @SuppressWarnings("unused")
    private ManageProjectsPlace place;
 
-   @Inject
    private ManageProjectsView  view;
+   
+   @Inject
+   public ManageProjectsActivity(ViewFactory viewFactory){
+      this.view = viewFactory.getManageProjectsView();
+   }
 
    public ManageProjectsActivity withPlace(ManageProjectsPlace place) {
       this.place = place;

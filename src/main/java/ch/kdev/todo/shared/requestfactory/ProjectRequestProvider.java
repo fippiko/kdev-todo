@@ -12,5 +12,4 @@ public class ProjectRequestProvider implements Provider<ProjectRequest> {
    public ProjectRequest get() {
       return appRequestFactory.projectRequest();
    }
-
 }

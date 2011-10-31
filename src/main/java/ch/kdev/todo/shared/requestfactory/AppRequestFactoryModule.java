@@ -6,7 +6,6 @@ public class AppRequestFactoryModule extends AbstractGinModule {
 
    @Override
    protected void configure() {
-      bind(ProjectRequest.class).toProvider(ProjectRequestProvider.class);
+      
    }
-
 }

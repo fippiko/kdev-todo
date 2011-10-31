@@ -3,6 +3,7 @@ package ch.kdev.todo.client.activity.project;
 import ch.kdev.todo.client.activity.BaseActivity;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
+import ch.kdev.todo.client.view.ViewFactory;
 import ch.kdev.todo.client.view.project.edit.EditProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
@@ -12,6 +13,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class EditProjectActivity extends BaseActivity implements EditProjectView.Presenter {
    @Inject
@@ -20,11 +22,15 @@ public class EditProjectActivity extends BaseActivity implements EditProjectView
    @SuppressWarnings("unused")
    private EditProjectPlace  place;
 
-   @Inject
    private EditProjectView   view;
 
    private ProjectProxy      project;
 
+   @Inject
+   public EditProjectActivity(ViewFactory viewFactory){
+      this.view = viewFactory.getEditProjectView();
+   }
+   
    public EditProjectActivity withPlace(EditProjectPlace place) {
       this.place = place;
       this.loadProject(place.getProjectID());
@@ -78,6 +84,12 @@ public class EditProjectActivity extends BaseActivity implements EditProjectView
          @Override
          public void onSuccess(Void response) {
             goTo(new ViewProjectPlace(project.getId().toString()));
+         }
+         
+         @Override
+         public void onFailure(ServerFailure error) {
+            // TODO Auto-generated method stub
+            super.onFailure(error);
          }
       });
    }

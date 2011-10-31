@@ -32,16 +32,8 @@ public class AppLayoutDesktop implements AppLayout {
    @UiField
    SimplePanel                      footerPanel;
 
-   // @Inject
-   // public AppLayoutDesktop(Presenter presenter) {
    public AppLayoutDesktop() {
-      /*
-       * mainMenu = (MainMenuViewDesktop) presenter.getMainMenuView();
-       * mainMenu.setPresenter
-       * ((ch.kdev.todo.client.view.mainmenu.MainMenuView.Presenter) presenter);
-       * 
-       * mainLayoutPanel = binder.createAndBindUi(this);
-       */
+
    }
 
    @Override

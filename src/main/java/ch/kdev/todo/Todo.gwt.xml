@@ -15,6 +15,7 @@
   <inherits name="com.google.gwt.place.Place"/>
   <inherits name="com.google.gwt.inject.Inject"/>
   <inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
+  <inherits name='eu.maydu.gwt.validation.ValidationLibrary' />
   
   <!-- gwt-log for logging -->
   <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" /> 
@@ -22,10 +23,10 @@
   <!-- Specify the app entry point class.                         -->
   <entry-point class='ch.kdev.todo.client.Todo'/>
 
-  <!-- Use ClientFactoryImpl by default -->
-  <!-- <replace-with class="ch.kdev.todo.client.ClientFactoryDesktop">
+  <!-- Use ClientFactoryImpl by default 
+   <replace-with class="ch.kdev.todo.client.ClientFactoryDesktop">
     <when-type-is class="ch.kdev.todo.client.ClientFactory"/>
-  </replace-with> -->
+  </replace-with>-->
   
 
   <!-- Specify the paths for translatable code                    -->

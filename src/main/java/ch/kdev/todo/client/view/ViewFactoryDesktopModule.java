@@ -16,10 +16,15 @@ import ch.kdev.todo.client.view.project.view.ViewProjectViewDesktop;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
 
+import eu.maydu.gwt.validation.client.DefaultValidationProcessor;
+import eu.maydu.gwt.validation.client.ValidationProcessor;
+
 public class ViewFactoryDesktopModule extends AbstractGinModule {
 
    @Override
    protected void configure() {
+      bind(ValidationProcessor.class).to(DefaultValidationProcessor.class);
+      
       bind(AppLayout.class).to(AppLayoutDesktop.class).in(Singleton.class);
       bind(MainMenuView.class).to(MainMenuViewDesktop.class).in(Singleton.class);
 

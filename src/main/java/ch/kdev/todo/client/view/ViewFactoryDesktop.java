@@ -1,10 +1,10 @@
 package ch.kdev.todo.client.view;
 
-import ch.kdev.todo.client.activity.ActivityFactoryModule;
+import ch.kdev.todo.client.AppMainFactoryDesktopModule;
 
 import com.google.gwt.inject.client.GinModules;
 
-@GinModules({ViewFactoryDesktopModule.class, ActivityFactoryModule.class})
+@GinModules({AppMainFactoryDesktopModule.class, ViewFactoryDesktopModule.class})
 public interface ViewFactoryDesktop extends ViewFactory {
 
 }

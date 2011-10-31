@@ -24,6 +24,7 @@ public class ActivityFactoryModule extends AbstractGinModule {
 
    @Override
    protected void configure() {
+      
       bind(ActivityMapper.class).to(AppActivityMapper.class).in(Singleton.class);
       bind(ActivityManager.class).to(AppActivityManager.class).in(Singleton.class);
 
@@ -32,7 +33,7 @@ public class ActivityFactoryModule extends AbstractGinModule {
 
       bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
       bind(PlaceController.class).to(SimplePlaceController.class).in(Singleton.class);
-
+      
       bind(ManageProjectsActivity.class).in(Singleton.class);
       bind(AddProjectActivity.class);
       bind(EditProjectActivity.class);

@@ -4,6 +4,7 @@ import ch.kdev.todo.client.activity.BaseActivity;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
+import ch.kdev.todo.client.view.ViewFactory;
 import ch.kdev.todo.client.view.project.view.ViewProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
@@ -18,11 +19,15 @@ public class ViewProjectActivity extends BaseActivity implements ViewProjectView
    @Inject
    private ProjectRequest   projectRequest;
 
-   @Inject
    private ViewProjectView  view;
 
    private ViewProjectPlace place;
 
+   @Inject
+   public ViewProjectActivity(ViewFactory viewFactory){
+      this.view = viewFactory.getViewProjectView();
+   }
+   
    public ViewProjectActivity withPlace(ViewProjectPlace place) {
       this.place = place;
       this.loadProject(place.getProjectID());
