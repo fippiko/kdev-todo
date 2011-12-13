@@ -1,4 +1,5 @@
+@charset "UTF-8";
 
-.validationFailedBorder{
-	border: solid red 2 px;
+.validationFailedBorder {
+	border: solid red 1px;
 }

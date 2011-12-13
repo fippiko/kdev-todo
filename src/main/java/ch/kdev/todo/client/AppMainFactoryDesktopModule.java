@@ -5,12 +5,14 @@ import ch.kdev.todo.client.activity.ActivityFactoryProvider;
 import ch.kdev.todo.client.view.ViewFactory;
 import ch.kdev.todo.client.view.ViewFactoryDesktop;
 import ch.kdev.todo.client.view.ViewFactoryDesktopProvider;
+import ch.kdev.todo.client.view.resources.AppResourcesDesktop;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactoryProvider;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 import ch.kdev.todo.shared.requestfactory.ProjectRequestProvider;
 
 import com.google.gwt.inject.client.AbstractGinModule;
+import com.google.inject.Singleton;
 
 public class AppMainFactoryDesktopModule extends AbstractGinModule {
 

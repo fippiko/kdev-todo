@@ -1,10 +1,13 @@
 package ch.kdev.todo.client.view.project.add;
 
+import ch.kdev.todo.client.AppMainFactory;
 import ch.kdev.todo.client.view.BaseView;
 import ch.kdev.todo.client.view.resources.AppResourcesDesktop;
+import ch.kdev.todo.client.view.widgets.messagebox.error.ErrorMessageBoxDesktop;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -45,20 +48,21 @@ public class AddProjectViewDesktop extends BaseView<AddProjectView.Presenter> im
 
    public AddProjectViewDesktop() {
       initWidget(uiBinder.createAndBindUi(this));
-      AppResourcesDesktop.INSTANCE.css().ensureInjected();
-      
-      //String test2 = AppResourcesDesktop.INSTANCE.css().getText();
-      //Boolean test = AppResourcesDesktop.INSTANCE.css().ensureInjected();
-      
    }
 
    @Inject
    private void initializeValidator(ValidationProcessor validator) {
       this.validator = validator;
-      this.validator.addValidators("name", new NotEmptyValidator(this.projectNameTextBox).addActionForFailure(new LabelTextAction(this.projectNameErrorLabel)).addActionForFailure(new StyleAction(AppResourcesDesktop.INSTANCE.css().validationFailedBorder())));
-      this.validator.addValidators("description", new NotEmptyValidator(this.projectDescriptionTextArea).addActionForFailure(new LabelTextAction(this.projectDescriptionErrorLabel)));
+      this.validator.addValidators("name", new NotEmptyValidator(this.projectNameTextBox).addActionForFailure(new LabelTextAction(this.projectNameErrorLabel)).addActionForFailure(new StyleAction(this.getResources().css().validationFailedBorder())));
+      this.validator.addValidators("description", new NotEmptyValidator(this.projectDescriptionTextArea).addActionForFailure(new LabelTextAction(this.projectDescriptionErrorLabel)).addActionForFailure(new StyleAction(this.getResources().css().validationFailedBorder())));
    }
 
+   private AppResourcesDesktop getResources(){
+      AppResourcesDesktop.instance.css().ensureInjected();
+      
+      return AppResourcesDesktop.instance;
+   }
+   
    @Override
    public ValidationProcessor getValidator() {
       return this.validator;
@@ -66,6 +70,9 @@ public class AddProjectViewDesktop extends BaseView<AddProjectView.Presenter> im
 
    @UiHandler("addProjectButton")
    void addProjectButtonClicked(ClickEvent e) {
+      ErrorMessageBoxDesktop test = new ErrorMessageBoxDesktop();
+      test.show();
+      
       if (this.validator.validate()) {
          String projectName = projectNameTextBox.getText();
          String projectDescription = projectDescriptionTextArea.getText();

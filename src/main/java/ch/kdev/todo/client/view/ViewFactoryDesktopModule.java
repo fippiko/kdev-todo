@@ -12,7 +12,6 @@ import ch.kdev.todo.client.view.project.manage.ManageProjectsView;
 import ch.kdev.todo.client.view.project.manage.ManageProjectsViewDesktop;
 import ch.kdev.todo.client.view.project.view.ViewProjectView;
 import ch.kdev.todo.client.view.project.view.ViewProjectViewDesktop;
-import ch.kdev.todo.client.view.resources.AppResourcesDesktop;
 
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
