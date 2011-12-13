@@ -12,8 +12,11 @@ import com.google.gwt.inject.client.GinModules;
 @GinModules({AppMainFactoryDesktopModule.class, ActivityFactoryModule.class, ViewFactoryDesktopModule.class, AppRequestFactoryModule.class})
 public interface AppMainFactoryDesktop extends AppMainFactory{
    
+   @Override
    ActivityFactory getActivityFactory();
+   @Override
    ViewFactoryDesktop getViewFactory();
+   @Override
    AppRequestFactory getRequestFactory();
 
 }

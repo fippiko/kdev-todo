@@ -6,7 +6,7 @@ public class TodoGwtTest extends GWTTestCase {
 
    @Override
    public String getModuleName() {
-      return "ch.kdev.todo.Todo";
+      return "ch.kdev.todo.client.Todo";
    }
 
    public void testClientFactory() {

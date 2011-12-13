@@ -14,10 +14,9 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ViewProjectViewDesktop extends BaseView<ViewProjectView.Presenter> implements ViewProjectView {
-   private static EditProjectDesktopUiBinder uiBinder = GWT.create(EditProjectDesktopUiBinder.class);
+   private static ViewProjectDesktopUiBinder uiBinder = GWT.create(ViewProjectDesktopUiBinder.class);
 
-   interface EditProjectDesktopUiBinder extends UiBinder<Widget, ViewProjectViewDesktop> {
-   }
+   interface ViewProjectDesktopUiBinder extends UiBinder<Widget, ViewProjectViewDesktop> { }
 
    @UiField
    TextBox  projectNameTextBox;
@@ -47,5 +46,4 @@ public class ViewProjectViewDesktop extends BaseView<ViewProjectView.Presenter> 
       this.projectNameTextBox.setText(project.getName());
       this.projectDescriptionTextArea.setText(project.getDescription());
    }
-
 }

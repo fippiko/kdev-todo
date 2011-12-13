@@ -16,6 +16,7 @@ public class Todo implements EntryPoint {
    /**
     * This is the entry point method.
     */
+   @Override
    public void onModuleLoad() {
       AppMainFactory mainFactory = new AppMainFactoryDesktopProvider().get();
       

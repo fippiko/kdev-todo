@@ -18,8 +18,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class ManageProjectsViewDesktop extends BaseView<ManageProjectsView.Presenter> implements ManageProjectsView {
    private static ManageProjectsDesktopUiBinder uiBinder = GWT.create(ManageProjectsDesktopUiBinder.class);
 
-   interface ManageProjectsDesktopUiBinder extends UiBinder<Widget, ManageProjectsViewDesktop> {
-   }
+   interface ManageProjectsDesktopUiBinder extends UiBinder<Widget, ManageProjectsViewDesktop> { }
 
    @UiField
    ListBox projectList;
@@ -48,7 +47,7 @@ public class ManageProjectsViewDesktop extends BaseView<ManageProjectsView.Prese
 
       this.reloadProjectList();
    }
-
+   
    private void enableWidgets() {
       Boolean itemSelected = projectList.getSelectedIndex() >= 0;
 
@@ -92,6 +91,8 @@ public class ManageProjectsViewDesktop extends BaseView<ManageProjectsView.Prese
       for (ProjectProxy project : projects) {
          projectList.addItem(project.getName() + " : " + project.getDescription(), String.valueOf(project.getId()));
       }
+      
+      this.enableWidgets();
    }
 
    @Override

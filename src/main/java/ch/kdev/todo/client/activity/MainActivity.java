@@ -1,7 +1,7 @@
 package ch.kdev.todo.client.activity;
 
-import ch.kdev.todo.client.AppMainFactory;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
+import ch.kdev.todo.client.view.BaseViewInterface;
 import ch.kdev.todo.client.view.ViewFactory;
 import ch.kdev.todo.client.view.layout.AppLayout;
 import ch.kdev.todo.client.view.mainmenu.MainMenuView;
@@ -12,12 +12,11 @@ import com.google.inject.Inject;
 
 public class MainActivity extends BaseActivity implements AppLayout.Presenter, MainMenuView.Presenter {
 
-   //@Inject
+   @Inject
    private ViewFactory viewFactory;
 
-   @Inject
-   public MainActivity(AppMainFactory mainFactory) {
-      this.viewFactory = mainFactory.getViewFactory();
+   public MainActivity() {
+      
    }
 
    @Override
@@ -49,5 +48,11 @@ public class MainActivity extends BaseActivity implements AppLayout.Presenter, M
    @Override
    public MainMenuView getMainMenuView() {
       return this.viewFactory.getMainMenuView();
+   }
+
+   @Override
+   public BaseViewInterface getView() {
+      //the Main-Activity has more than one view
+      return null;
    }
 }

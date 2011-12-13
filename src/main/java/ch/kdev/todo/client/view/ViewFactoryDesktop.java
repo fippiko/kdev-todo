@@ -6,5 +6,5 @@ import com.google.gwt.inject.client.GinModules;
 
 @GinModules({AppMainFactoryDesktopModule.class, ViewFactoryDesktopModule.class})
 public interface ViewFactoryDesktop extends ViewFactory {
-
+   
 }

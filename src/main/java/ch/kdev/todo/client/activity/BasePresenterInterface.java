@@ -1,5 +1,7 @@
 package ch.kdev.todo.client.activity;
 
-public interface BasePresenterInterface {
+import ch.kdev.todo.client.view.BaseViewInterface;
 
+public interface BasePresenterInterface {
+   public BaseViewInterface getView();
 }

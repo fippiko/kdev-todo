@@ -6,5 +6,5 @@ import com.google.gwt.user.client.ui.IsWidget;
 
 public interface BaseViewInterface extends IsWidget {
 
-   public void setPresenter(BasePresenterInterface presenter);
+   public void setActivity(BasePresenterInterface activity);
 }

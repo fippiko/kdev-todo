@@ -33,7 +33,6 @@ public class AppLayoutDesktop implements AppLayout {
    SimplePanel                      footerPanel;
 
    public AppLayoutDesktop() {
-
    }
 
    @Override

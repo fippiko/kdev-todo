@@ -28,6 +28,7 @@
 			<tr>
 				<td><g:Label>Description:</g:Label></td>
 				<td><g:TextArea ui:field="projectDescriptionTextArea" styleName="{style.descriptionTextArea}"></g:TextArea></td>
+				<td><g:Label  ui:field="projectDescriptionErrorLabel"></g:Label></td>
 			</tr>
 			
 			<tr>

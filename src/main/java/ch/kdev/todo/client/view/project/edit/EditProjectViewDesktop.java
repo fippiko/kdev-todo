@@ -16,8 +16,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class EditProjectViewDesktop extends BaseView<EditProjectView.Presenter> implements EditProjectView {
    private static EditProjectDesktopUiBinder uiBinder = GWT.create(EditProjectDesktopUiBinder.class);
 
-   interface EditProjectDesktopUiBinder extends UiBinder<Widget, EditProjectViewDesktop> {
-   }
+   interface EditProjectDesktopUiBinder extends UiBinder<Widget, EditProjectViewDesktop> { }
 
    @UiField
    TextBox  projectNameTextBox;

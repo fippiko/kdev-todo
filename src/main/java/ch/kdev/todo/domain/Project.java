@@ -39,7 +39,6 @@ public class Project {
    }
 
    @Type(type = "string")
-   //@NotEmpty(message="Please insert a name")
    @Length(max=50)
    public String getName() {
       return name;

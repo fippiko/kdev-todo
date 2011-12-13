@@ -3,14 +3,13 @@ package ch.kdev.todo.client.activity.project;
 import ch.kdev.todo.client.activity.BaseActivity;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
+import ch.kdev.todo.client.view.BaseViewInterface;
 import ch.kdev.todo.client.view.ViewFactory;
 import ch.kdev.todo.client.view.project.edit.EditProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
@@ -49,16 +48,7 @@ public class EditProjectActivity extends BaseActivity implements EditProjectView
          }
       });
    }
-
-   /**
-    * Invoked by the ActivityManager to start a new Activity
-    */
-   @Override
-   public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-      this.view.setPresenter(this);
-      containerWidget.setWidget(this.view.asWidget());
-   }
-
+   
    /**
     * Ask user before stopping this activity
     */
@@ -92,5 +82,10 @@ public class EditProjectActivity extends BaseActivity implements EditProjectView
             super.onFailure(error);
          }
       });
+   }
+
+   @Override
+   public BaseViewInterface getView() {
+      return this.view;
    }
 }

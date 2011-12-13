@@ -9,7 +9,7 @@ public class BaseView<T> extends Composite implements BaseViewInterface {
    private BasePresenterInterface presenter;
 
    @Override
-   public void setPresenter(BasePresenterInterface presenter) {
+   public void setActivity(BasePresenterInterface presenter) {
       this.presenter = presenter;
    }
 

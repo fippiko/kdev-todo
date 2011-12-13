@@ -4,20 +4,20 @@ import ch.kdev.todo.client.activity.BaseActivity;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
+import ch.kdev.todo.client.view.BaseViewInterface;
 import ch.kdev.todo.client.view.ViewFactory;
 import ch.kdev.todo.client.view.project.view.ViewProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
-import ch.kdev.todo.shared.requestfactory.ProjectRequest;
+import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class ViewProjectActivity extends BaseActivity implements ViewProjectView.Presenter {
 
    @Inject
-   private ProjectRequest   projectRequest;
+   private AppRequestFactory requestFactory;
 
    private ViewProjectView  view;
 
@@ -37,22 +37,19 @@ public class ViewProjectActivity extends BaseActivity implements ViewProjectView
 
    private void loadProject(String projectID) {
       long projectIdAsLong = Integer.valueOf(projectID);
-      projectRequest.findProject(projectIdAsLong).fire(new Receiver<ProjectProxy>() {
+      requestFactory.projectRequest().findProject(projectIdAsLong).fire(new Receiver<ProjectProxy>() {
 
          @Override
          public void onSuccess(ProjectProxy receivedProject) {
             view.setProjectAttributes(receivedProject);
          }
+         
+         @Override
+         public void onFailure(ServerFailure error) {
+            // TODO Auto-generated method stub
+            super.onFailure(error);
+         }
       });
-   }
-
-   /**
-    * Invoked by the ActivityManager to start a new Activity
-    */
-   @Override
-   public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-      this.view.setPresenter(this);
-      containerWidget.setWidget(this.view.asWidget());
    }
 
    /**
@@ -76,5 +73,10 @@ public class ViewProjectActivity extends BaseActivity implements ViewProjectView
    @Override
    public void manageProjects() {
       this.goTo(new ManageProjectsPlace());
+   }
+
+   @Override
+   public BaseViewInterface getView() {
+      return this.view;
    }
 }

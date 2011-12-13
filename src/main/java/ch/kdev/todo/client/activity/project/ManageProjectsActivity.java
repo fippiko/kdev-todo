@@ -7,13 +7,12 @@ import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
+import ch.kdev.todo.client.view.BaseViewInterface;
 import ch.kdev.todo.client.view.ViewFactory;
 import ch.kdev.todo.client.view.project.manage.ManageProjectsView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
 
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
@@ -35,15 +34,6 @@ public class ManageProjectsActivity extends BaseActivity implements ManageProjec
    public ManageProjectsActivity withPlace(ManageProjectsPlace place) {
       this.place = place;
       return this;
-   }
-
-   /**
-    * Invoked by the ActivityManager to start a new Activity
-    */
-   @Override
-   public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-      this.view.setPresenter(this);
-      containerWidget.setWidget(this.view.asWidget());
    }
 
    @Override
@@ -87,5 +77,10 @@ public class ManageProjectsActivity extends BaseActivity implements ManageProjec
       String selectedProjectId = this.view.getSelectedProjectId();
 
       this.goTo(new ViewProjectPlace(selectedProjectId));
+   }
+
+   @Override
+   public BaseViewInterface getView() {
+      return this.view;
    }
 }
