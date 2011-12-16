@@ -1,15 +1,38 @@
 package ch.kdev.todo.client.view.mainmenu;
 
-import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 
-public interface MainMenuView extends IsWidget {
+public class MainMenuView extends Composite implements IMainMenuView {
 
-   public interface Presenter {
+   private Presenter presenter;
 
-      void gotoDefaultPlace();
-
-      void gotoManageProjectsPlace();
+   interface MainMenuUiBinder extends UiBinder<HTMLPanel, MainMenuView> {
    }
 
-   void setPresenter(Presenter presenter);
+   private static MainMenuUiBinder binder = GWT.create(MainMenuUiBinder.class);
+
+   @UiField
+   Button                          manageProjectsButton;
+
+   public MainMenuView() {
+      HTMLPanel panel = binder.createAndBindUi(this);
+      initWidget(panel);
+   }
+
+   @UiHandler("manageProjectsButton")
+   void manageProjectsButtonClicked(ClickEvent e) {
+      presenter.gotoManageProjectsPlace();
+   }
+
+   @Override
+   public void setPresenter(Presenter presenter) {
+      this.presenter = presenter;
+   }
 }

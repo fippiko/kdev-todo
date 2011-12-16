@@ -10,9 +10,10 @@ public class TodoGwtTest extends GWTTestCase {
    }
 
    public void testClientFactory() {
-      //ClientFactoryDesktop clientFactory = GWT.create(ClientFactoryDesktop.class);
+      // ClientFactoryDesktop clientFactory =
+      // GWT.create(ClientFactoryDesktop.class);
 
-     // assertNotNull(clientFactory);
+      // assertNotNull(clientFactory);
       // assertNotNull(clientFactory.getAppPresenter());
       // assertNotNull(clientFactory.getAppLayout());
       // assertNotNull(clientFactory.getEventBus());
