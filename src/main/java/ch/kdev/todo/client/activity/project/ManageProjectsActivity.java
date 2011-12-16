@@ -2,32 +2,32 @@ package ch.kdev.todo.client.activity.project;
 
 import java.util.List;
 
-import ch.kdev.todo.client.activity.BaseActivity;
+import ch.kdev.todo.client.activity.base.BaseActivity;
 import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
-import ch.kdev.todo.client.view.BaseViewInterface;
-import ch.kdev.todo.client.view.ViewFactory;
-import ch.kdev.todo.client.view.project.manage.ManageProjectsView;
+import ch.kdev.todo.client.view.IBaseView;
+import ch.kdev.todo.client.view.factory.IViewFactory;
+import ch.kdev.todo.client.view.project.manage.IManageProjectsView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
-import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
+import ch.kdev.todo.shared.requestfactory.IRequestFactory;
 
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
-public class ManageProjectsActivity extends BaseActivity implements ManageProjectsView.Presenter {
+public class ManageProjectsActivity extends BaseActivity implements IManageProjectsView.Presenter {
 
    @Inject
-   AppRequestFactory           requestFactory;
+   IRequestFactory           requestFactory;
 
    @SuppressWarnings("unused")
    private ManageProjectsPlace place;
 
-   private ManageProjectsView  view;
-   
+   private IManageProjectsView view;
+
    @Inject
-   public ManageProjectsActivity(ViewFactory viewFactory){
+   public ManageProjectsActivity(IViewFactory viewFactory) {
       this.view = viewFactory.getManageProjectsView();
    }
 
@@ -80,7 +80,7 @@ public class ManageProjectsActivity extends BaseActivity implements ManageProjec
    }
 
    @Override
-   public BaseViewInterface getView() {
+   public IBaseView getView() {
       return this.view;
    }
 }

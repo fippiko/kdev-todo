@@ -1,35 +1,35 @@
 package ch.kdev.todo.client.activity.project;
 
-import ch.kdev.todo.client.activity.BaseActivity;
+import ch.kdev.todo.client.activity.base.BaseActivity;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
-import ch.kdev.todo.client.view.BaseViewInterface;
-import ch.kdev.todo.client.view.ViewFactory;
-import ch.kdev.todo.client.view.project.edit.EditProjectView;
+import ch.kdev.todo.client.view.IBaseView;
+import ch.kdev.todo.client.view.factory.IViewFactory;
+import ch.kdev.todo.client.view.project.edit.IEditProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
-import ch.kdev.todo.shared.requestfactory.AppRequestFactory;
+import ch.kdev.todo.shared.requestfactory.IRequestFactory;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
-public class EditProjectActivity extends BaseActivity implements EditProjectView.Presenter {
+public class EditProjectActivity extends BaseActivity implements IEditProjectView.Presenter {
    @Inject
-   private AppRequestFactory requestFactory;
+   private IRequestFactory requestFactory;
 
    @SuppressWarnings("unused")
    private EditProjectPlace  place;
 
-   private EditProjectView   view;
+   private IEditProjectView  view;
 
    private ProjectProxy      project;
 
    @Inject
-   public EditProjectActivity(ViewFactory viewFactory){
+   public EditProjectActivity(IViewFactory viewFactory) {
       this.view = viewFactory.getEditProjectView();
    }
-   
+
    public EditProjectActivity withPlace(EditProjectPlace place) {
       this.place = place;
       this.loadProject(place.getProjectID());
@@ -48,17 +48,17 @@ public class EditProjectActivity extends BaseActivity implements EditProjectView
          }
       });
    }
-   
+
    /**
     * Ask user before stopping this activity
     */
    @Override
    public String mayStop() {
-      if (this.isManualNavigation()) {
-         return null;
+      if (this.view.hasChanges()) {
+         return "Please hold on. You'll lose all changes.";
       }
       else {
-         return "Please hold on. This activity is stopping.";
+         return null;
       }
    }
 
@@ -75,7 +75,7 @@ public class EditProjectActivity extends BaseActivity implements EditProjectView
          public void onSuccess(Void response) {
             goTo(new ViewProjectPlace(project.getId().toString()));
          }
-         
+
          @Override
          public void onFailure(ServerFailure error) {
             // TODO Auto-generated method stub
@@ -85,7 +85,7 @@ public class EditProjectActivity extends BaseActivity implements EditProjectView
    }
 
    @Override
-   public BaseViewInterface getView() {
+   public IBaseView getView() {
       return this.view;
    }
 }

@@ -6,7 +6,7 @@ import com.google.inject.Provider;
 public class ProjectRequestProvider implements Provider<ProjectRequest> {
 
    @Inject
-   AppRequestFactory appRequestFactory;
+   IRequestFactory appRequestFactory;
 
    @Override
    public ProjectRequest get() {

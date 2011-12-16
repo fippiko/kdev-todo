@@ -39,7 +39,7 @@ public class Project {
    }
 
    @Type(type = "string")
-   @Length(max=50)
+   @Length(max = 50)
    public String getName() {
       return name;
    }
@@ -49,7 +49,7 @@ public class Project {
    }
 
    @Type(type = "string")
-   @Length(max=250)
+   @Length(max = 250)
    public String getDescription() {
       return description;
    }

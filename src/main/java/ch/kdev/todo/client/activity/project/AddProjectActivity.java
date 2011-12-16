@@ -4,12 +4,12 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
-import ch.kdev.todo.client.activity.BaseActivity;
+import ch.kdev.todo.client.activity.base.BaseActivity;
 import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
-import ch.kdev.todo.client.view.BaseViewInterface;
-import ch.kdev.todo.client.view.ViewFactory;
-import ch.kdev.todo.client.view.project.add.AddProjectView;
+import ch.kdev.todo.client.view.IBaseView;
+import ch.kdev.todo.client.view.factory.IViewFactory;
+import ch.kdev.todo.client.view.project.add.IAddProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 
@@ -21,18 +21,17 @@ import eu.maydu.gwt.validation.client.InvalidValueSerializable;
 import eu.maydu.gwt.validation.client.ValidationException;
 import eu.maydu.gwt.validation.client.ValidationProcessor;
 
-public class AddProjectActivity extends BaseActivity implements AddProjectView.Presenter {
+public class AddProjectActivity extends BaseActivity implements IAddProjectView.Presenter {
    @Inject
    private ProjectRequest  projectRequest;
 
    @SuppressWarnings("unused")
    private AddProjectPlace place;
 
-   // @Inject
-   private AddProjectView  view;
+   private IAddProjectView view;
 
    @Inject
-   public AddProjectActivity(ViewFactory viewFactory) {
+   public AddProjectActivity(IViewFactory viewFactory) {
       this.view = viewFactory.getAddProjectView();
    }
 
@@ -46,11 +45,11 @@ public class AddProjectActivity extends BaseActivity implements AddProjectView.P
     */
    @Override
    public String mayStop() {
-      if (this.isManualNavigation()) {
-         return null;
+      if (this.view.hasChanges()) {
+         return "Please hold on. You'll lose all changes.";
       }
       else {
-         return "Please hold on. This activity is stopping.";
+         return null;
       }
    }
 
@@ -70,7 +69,7 @@ public class AddProjectActivity extends BaseActivity implements AddProjectView.P
 
          @Override
          public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
-            //TODO 
+            // TODO
             for (ConstraintViolation<?> constraintViolation : violations) {
                String propName = constraintViolation.getPropertyPath().toString();
                InvalidValueSerializable iv = new InvalidValueSerializable();
@@ -94,7 +93,7 @@ public class AddProjectActivity extends BaseActivity implements AddProjectView.P
    }
 
    @Override
-   public BaseViewInterface getView() {
+   public IBaseView getView() {
       return this.view;
    }
 }

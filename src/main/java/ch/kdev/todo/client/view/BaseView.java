@@ -1,15 +1,15 @@
 package ch.kdev.todo.client.view;
 
-import ch.kdev.todo.client.activity.BasePresenterInterface;
+import ch.kdev.todo.client.activity.base.IBaseActivity;
 
 import com.google.gwt.user.client.ui.Composite;
 
-public class BaseView<T> extends Composite implements BaseViewInterface {
+public class BaseView<T> extends Composite implements IBaseView {
 
-   private BasePresenterInterface presenter;
+   private IBaseActivity presenter;
 
    @Override
-   public void setActivity(BasePresenterInterface presenter) {
+   public void setActivity(IBaseActivity presenter) {
       this.presenter = presenter;
    }
 

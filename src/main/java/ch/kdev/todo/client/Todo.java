@@ -1,9 +1,11 @@
 package ch.kdev.todo.client;
 
-import ch.kdev.todo.client.activity.ActivityFactory;
-import ch.kdev.todo.client.activity.MainActivity;
+import ch.kdev.todo.client.activity.factory.IActivityFactory;
+import ch.kdev.todo.client.activity.main.MainActivity;
+import ch.kdev.todo.client.factory.ClientFactoryProvider;
+import ch.kdev.todo.client.factory.IClientFactoryBase;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
-import ch.kdev.todo.client.view.ViewFactory;
+import ch.kdev.todo.client.view.factory.IViewFactory;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.EntryPoint;
@@ -18,14 +20,15 @@ public class Todo implements EntryPoint {
     */
    @Override
    public void onModuleLoad() {
-      AppMainFactory mainFactory = new AppMainFactoryDesktopProvider().get();
-      
-      ViewFactory viewFactory = mainFactory.getViewFactory();
-      ActivityFactory activityFactory = mainFactory.getActivityFactory();
+      IClientFactoryBase mainFactory = new ClientFactoryProvider().get();
+
+      IViewFactory viewFactory = mainFactory.getViewFactory();
+      IActivityFactory activityFactory = mainFactory.getActivityFactory();
       MainActivity appPresenter = activityFactory.getMainActivity();
       ActivityManager activityManager = activityFactory.getActivityManager();
 
-      // Set Display of the ActivityManager to the ContentContainer of the AppPresenter
+      // Set Display of the ActivityManager to the ContentContainer of the
+      // AppPresenter
       activityManager.setDisplay(appPresenter.getContentContainer());
 
       // Add app layout to RootPanel
