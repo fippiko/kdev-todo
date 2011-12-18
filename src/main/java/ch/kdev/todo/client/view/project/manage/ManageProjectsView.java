@@ -2,7 +2,7 @@ package ch.kdev.todo.client.view.project.manage;
 
 import java.util.List;
 
-import ch.kdev.todo.client.view.BaseView;
+import ch.kdev.todo.client.view.base.BaseView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 
 import com.google.gwt.core.client.GWT;
@@ -58,27 +58,27 @@ public class ManageProjectsView extends BaseView<IManageProjectsView.Presenter> 
    }
 
    private void reloadProjectList() {
-      this.getPresenter().reloadProjectList();
+      this.getActivity().reloadProjectList();
    }
 
    @UiHandler("viewProjectButton")
    void viewProjectButtonClicked(ClickEvent e) {
-      this.getPresenter().viewSelectedProject();
+      this.getActivity().viewSelectedProject();
    }
 
    @UiHandler("editProjectButton")
    void editProjectButtonClicked(ClickEvent e) {
-      this.getPresenter().editSelectedProject();
+      this.getActivity().editSelectedProject();
    }
 
    @UiHandler("deleteProjectButton")
    void deleteProjectButtonClicked(ClickEvent e) {
-      this.getPresenter().deleteSelectedProject();
+      this.getActivity().deleteSelectedProject();
    }
 
    @UiHandler("addProjectButton")
    void addProjectButtonClicked(ClickEvent e) {
-      this.getPresenter().addNewProject();
+      this.getActivity().addNewProject();
    }
 
    @UiHandler("projectList")

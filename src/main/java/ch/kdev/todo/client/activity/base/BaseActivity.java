@@ -1,7 +1,6 @@
 package ch.kdev.todo.client.activity.base;
 
 import ch.kdev.todo.client.activity.factory.IActivityFactory;
-import ch.kdev.todo.client.activity.handler.ErrorHandler;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -27,8 +26,11 @@ public abstract class BaseActivity extends AbstractActivity implements IBaseActi
       containerWidget.setWidget(this.getView().asWidget());
    }
    
-   protected ErrorHandler getErrorHandler(){
-      return this.activityFactory.getErrorHandler();
+   /**
+    * Redirect to the ErrorHelp Activity
+    */
+   public void handleError(String errorMessage){
+      
    }
 
    public void goTo(Place place) {

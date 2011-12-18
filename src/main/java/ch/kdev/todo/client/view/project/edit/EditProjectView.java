@@ -1,6 +1,6 @@
 package ch.kdev.todo.client.view.project.edit;
 
-import ch.kdev.todo.client.view.BaseView;
+import ch.kdev.todo.client.view.base.BaseView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 
 import com.google.gwt.core.client.GWT;
@@ -40,7 +40,7 @@ public class EditProjectView extends BaseView<IEditProjectView.Presenter> implem
 
    @UiHandler("updateProjectButton")
    public void updateProjectButtonClicked(ClickEvent e) {
-      this.getPresenter().saveProject();
+      this.getActivity().saveProject();
    }
 
    @Override

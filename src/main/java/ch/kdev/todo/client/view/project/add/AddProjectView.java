@@ -1,6 +1,6 @@
 package ch.kdev.todo.client.view.project.add;
 
-import ch.kdev.todo.client.view.BaseView;
+import ch.kdev.todo.client.view.base.BaseView;
 import ch.kdev.todo.client.view.resources.ClientResources;
 
 import com.google.gwt.core.client.GWT;
@@ -71,16 +71,11 @@ public class AddProjectView extends BaseView<IAddProjectView.Presenter> implemen
          String projectName = projectNameTextBox.getText();
          String projectDescription = projectDescriptionTextArea.getText();
 
-         this.getPresenter().addNewProject(projectName, projectDescription);
+         this.getActivity().addNewProject(projectName, projectDescription);
       }
       else {
          this.showError("This is the error message...");
       }
-   }
-
-   @Override
-   public void showError(String errorMessage) {
-      // TODO use handler here...
    }
 
    @Override

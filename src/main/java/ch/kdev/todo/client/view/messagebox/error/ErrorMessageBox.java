@@ -1,18 +1,24 @@
 package ch.kdev.todo.client.view.messagebox.error;
 
-import ch.kdev.todo.client.view.BaseView;
+import ch.kdev.todo.client.activity.base.IBaseActivity;
+import ch.kdev.todo.client.view.base.BaseView;
+import ch.kdev.todo.client.view.messagebox.BaseWidget;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ErrorHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ErrorMessageBox extends BaseView<ErrorHandler> implements IErrorMessageBox {
+public class ErrorMessageBox extends BaseWidget implements IErrorMessageBox {
    private static ErrorMessageBoxDesktopUiBinder uiBinder = GWT.create(ErrorMessageBoxDesktopUiBinder.class);
+
+   @UiField
+   DialogBox                                     dialogBox;
+
    @UiField
    Button                                        okButton;
 
@@ -21,10 +27,9 @@ public class ErrorMessageBox extends BaseView<ErrorHandler> implements IErrorMes
 
    // @UiField
    // TextBox descriptionTextBox;
-
+   
    public ErrorMessageBox() {
-      // setWidget(uiBinder.createAndBindUi(this));
-      setWidget(uiBinder.createAndBindUi(this));
+      uiBinder.createAndBindUi(this);
    }
 
    @Override
@@ -39,19 +44,26 @@ public class ErrorMessageBox extends BaseView<ErrorHandler> implements IErrorMes
    }
 
    @UiHandler("okButton")
-   void onButtonClick(ClickEvent event) {
+   void onOkButtonClicked(ClickEvent event) {
       this.close();
+   }
+
+   void onHelpButtonClicked(ClickEvent event) {
+      //this.getActivity().handleError("error");
    }
 
    @Override
    public void show() {
-      // TODO Auto-generated method stub
-
+      this.dialogBox.show();
    }
 
    @Override
    public void close() {
-      // TODO Auto-generated method stub
+      this.dialogBox.hide();
+   }
 
+   @Override
+   public Widget asWidget() {
+      return this.dialogBox;
    }
 }
