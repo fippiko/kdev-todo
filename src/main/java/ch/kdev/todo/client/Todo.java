@@ -3,7 +3,7 @@ package ch.kdev.todo.client;
 import ch.kdev.todo.client.activity.factory.IActivityFactory;
 import ch.kdev.todo.client.activity.main.MainActivity;
 import ch.kdev.todo.client.factory.ClientFactoryProvider;
-import ch.kdev.todo.client.factory.IClientFactoryBase;
+import ch.kdev.todo.client.factory.IClientFactory;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.view.factory.IViewFactory;
 
@@ -20,10 +20,10 @@ public class Todo implements EntryPoint {
     */
    @Override
    public void onModuleLoad() {
-      IClientFactoryBase mainFactory = new ClientFactoryProvider().get();
+      IClientFactory clientFactory = new ClientFactoryProvider().get();
 
-      IViewFactory viewFactory = mainFactory.getViewFactory();
-      IActivityFactory activityFactory = mainFactory.getActivityFactory();
+      IViewFactory viewFactory = clientFactory.getViewFactory();
+      IActivityFactory activityFactory = clientFactory.getActivityFactory();
       MainActivity appPresenter = activityFactory.getMainActivity();
       ActivityManager activityManager = activityFactory.getActivityManager();
 

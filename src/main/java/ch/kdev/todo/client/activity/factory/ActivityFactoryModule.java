@@ -1,6 +1,5 @@
 package ch.kdev.todo.client.activity.factory;
 
-import ch.kdev.todo.client.activity.handler.ErrorHandler;
 import ch.kdev.todo.client.activity.project.AddProjectActivity;
 import ch.kdev.todo.client.activity.project.EditProjectActivity;
 import ch.kdev.todo.client.activity.project.ManageProjectsActivity;
@@ -38,7 +37,5 @@ public class ActivityFactoryModule extends AbstractGinModule {
       bind(AddProjectActivity.class);
       bind(EditProjectActivity.class);
       bind(ViewProjectActivity.class);
-      
-      bind(ErrorHandler.class).in(Singleton.class);
    }
 }

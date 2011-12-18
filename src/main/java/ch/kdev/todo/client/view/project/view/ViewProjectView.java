@@ -1,6 +1,6 @@
 package ch.kdev.todo.client.view.project.view;
 
-import ch.kdev.todo.client.view.BaseView;
+import ch.kdev.todo.client.view.base.BaseView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 
 import com.google.gwt.core.client.GWT;
@@ -34,12 +34,12 @@ public class ViewProjectView extends BaseView<IViewProjectView.Presenter> implem
 
    @UiHandler("editProjectButton")
    public void updateProjectButtonClicked(ClickEvent e) {
-      this.getPresenter().editProject();
+      this.getActivity().editProject();
    }
 
    @UiHandler("manageProjectsButton")
    void manageProjectsButtonClicked(ClickEvent e) {
-      this.getPresenter().manageProjects();
+      this.getActivity().manageProjects();
    }
 
    @Override

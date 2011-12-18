@@ -4,7 +4,7 @@ import ch.kdev.todo.client.activity.base.BaseActivity;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
-import ch.kdev.todo.client.view.IBaseView;
+import ch.kdev.todo.client.view.base.IBaseView;
 import ch.kdev.todo.client.view.factory.IViewFactory;
 import ch.kdev.todo.client.view.project.view.IViewProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;

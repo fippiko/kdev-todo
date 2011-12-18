@@ -1,6 +1,5 @@
 package ch.kdev.todo.client.activity.factory;
 
-import ch.kdev.todo.client.activity.handler.ErrorHandler;
 import ch.kdev.todo.client.activity.main.MainActivity;
 import ch.kdev.todo.client.activity.project.AddProjectActivity;
 import ch.kdev.todo.client.activity.project.EditProjectActivity;
@@ -29,7 +28,6 @@ public interface IActivityFactory extends Ginjector {
    PlaceHistoryHandler getPlaceHistoryHandler();
 
    MainActivity getMainActivity();
-   ErrorHandler getErrorHandler();
    
    // Project-Activities
    ManageProjectsActivity getManageProjectsActivity();

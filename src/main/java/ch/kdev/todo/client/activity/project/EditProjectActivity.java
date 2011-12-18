@@ -3,7 +3,7 @@ package ch.kdev.todo.client.activity.project;
 import ch.kdev.todo.client.activity.base.BaseActivity;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
-import ch.kdev.todo.client.view.IBaseView;
+import ch.kdev.todo.client.view.base.IBaseView;
 import ch.kdev.todo.client.view.factory.IViewFactory;
 import ch.kdev.todo.client.view.project.edit.IEditProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;

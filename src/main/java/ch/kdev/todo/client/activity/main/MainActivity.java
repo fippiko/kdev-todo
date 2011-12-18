@@ -2,7 +2,7 @@ package ch.kdev.todo.client.activity.main;
 
 import ch.kdev.todo.client.activity.base.BaseActivity;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
-import ch.kdev.todo.client.view.IBaseView;
+import ch.kdev.todo.client.view.base.IBaseView;
 import ch.kdev.todo.client.view.factory.IViewFactory;
 import ch.kdev.todo.client.view.layout.IAppLayout;
 import ch.kdev.todo.client.view.mainmenu.IMainMenuView;

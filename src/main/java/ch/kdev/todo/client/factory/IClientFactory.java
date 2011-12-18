@@ -8,15 +8,15 @@ import ch.kdev.todo.shared.requestfactory.IRequestFactory;
 import ch.kdev.todo.shared.requestfactory.RequestFactoryModule;
 
 import com.google.gwt.inject.client.GinModules;
+import com.google.gwt.inject.client.Ginjector;
 
 @GinModules({ClientFactoryModule.class, ActivityFactoryModule.class, ViewFactoryModule.class, RequestFactoryModule.class})
-public interface IClientFactory extends IClientFactoryBase {
+public interface IClientFactory extends Ginjector {
 
-   @Override
    IActivityFactory getActivityFactory();
-   @Override
+   
    IViewFactory getViewFactory();
-   @Override
+   
    IRequestFactory getRequestFactory();
 
 }

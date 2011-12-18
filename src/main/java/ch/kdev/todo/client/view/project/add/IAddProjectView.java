@@ -1,7 +1,7 @@
 package ch.kdev.todo.client.view.project.add;
 
 import ch.kdev.todo.client.activity.base.IBaseActivity;
-import ch.kdev.todo.client.view.IBaseView;
+import ch.kdev.todo.client.view.base.IBaseView;
 import eu.maydu.gwt.validation.client.ValidationProcessor;
 
 public interface IAddProjectView extends IBaseView {
