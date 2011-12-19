@@ -6,3 +6,4 @@ target/
 .apt_generated/
 www-test/
 .settings/
+.gwt/
