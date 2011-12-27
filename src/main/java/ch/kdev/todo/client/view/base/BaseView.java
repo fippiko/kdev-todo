@@ -2,27 +2,25 @@ package ch.kdev.todo.client.view.base;
 
 import ch.kdev.todo.client.activity.base.IBaseActivity;
 import ch.kdev.todo.client.view.factory.IViewFactory;
-import ch.kdev.todo.client.view.messagebox.error.IErrorMessageBox;
+import ch.kdev.todo.client.view.widgets.messagebox.error.IErrorMessageBox;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.inject.Inject;
 
-public class BaseView<T> extends Composite implements IBaseView {
+public class BaseView<Presenter extends IPresenter> extends Composite implements IBaseView {
 
    @Inject
-   IViewFactory viewFactory;
+   private IViewFactory viewFactory;
+
+   private Presenter    presenter;
    
-   private IBaseActivity activity;
-
    @Override
-   public void setActivity(IBaseActivity activity) {
-      this.activity = activity;
+   public void setPresenter(IBaseActivity baseActivity) {    
+      this.presenter = (Presenter) baseActivity;
    }
-
-   @SuppressWarnings("unchecked")
-   public T getActivity() {
-      // if this fails, it was a wrong presenter added, shame on you!
-      return (T) this.activity;
+   
+   public Presenter getPresenter() {
+      return (Presenter) this.presenter;
    }
 
    @Override
@@ -32,4 +30,6 @@ public class BaseView<T> extends Composite implements IBaseView {
       errorMessageBox.setErrorMessage(errorMessage);
       errorMessageBox.show();
    }
+
+   
 }

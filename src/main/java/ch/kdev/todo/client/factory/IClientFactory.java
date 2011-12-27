@@ -14,9 +14,9 @@ import com.google.gwt.inject.client.Ginjector;
 public interface IClientFactory extends Ginjector {
 
    IActivityFactory getActivityFactory();
-   
+
    IViewFactory getViewFactory();
-   
+
    IRequestFactory getRequestFactory();
 
 }

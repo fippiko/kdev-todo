@@ -1,0 +1,41 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.mainPanel {
+			height: 100%;
+			width: 100%;
+		}
+		
+		.nameTextBox{
+			width: 200px;
+		}
+		
+		.descriptionTextArea{
+			height:100px;
+			width: 200px;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName='{style.mainPanel}'>
+		Add new Project
+		
+		<table>
+			<tr>
+				<td><g:Label>Name:</g:Label></td>
+				<td><g:TextBox ui:field="taskNameTextBox" name="name" styleName="{style.nameTextBox}"></g:TextBox></td>
+				<td><g:Label  ui:field="taskNameErrorLabel"></g:Label></td>
+			</tr>
+			<tr>
+				<td><g:Label>Description:</g:Label></td>
+				<td><g:TextArea ui:field="taskDescriptionTextArea" styleName="{style.descriptionTextArea}"></g:TextArea></td>
+				<td><g:Label  ui:field="taskDescriptionErrorLabel"></g:Label></td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td><g:Button ui:field="addTaskButton">Add new Task</g:Button></td>
+			</tr>
+		</table>
+		
+	</g:HTMLPanel>
+</ui:UiBinder>

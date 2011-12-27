@@ -6,6 +6,6 @@ import com.google.gwt.user.client.ui.IsWidget;
 
 public interface IBaseView extends IsWidget {
 
-   public void setActivity(IBaseActivity activity);
+   public void setPresenter(IBaseActivity baseActivity);
    public void showError(String errorMessage);
 }

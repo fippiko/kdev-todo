@@ -1,15 +1,15 @@
 package ch.kdev.todo.client.view.mainmenu;
 
-import com.google.gwt.user.client.ui.IsWidget;
+import ch.kdev.todo.client.view.base.IPresenter;
 
-public interface IMainMenuView extends IsWidget {
+public interface IMainMenuView {
 
-   public interface Presenter {
-
+   public interface Presenter extends IPresenter{
       void gotoDefaultPlace();
 
       void gotoManageProjectsPlace();
+
+      void gotoAddTask();
    }
 
-   void setPresenter(Presenter presenter);
 }

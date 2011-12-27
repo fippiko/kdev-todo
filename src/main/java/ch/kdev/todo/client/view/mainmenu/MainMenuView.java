@@ -1,38 +1,35 @@
 package ch.kdev.todo.client.view.mainmenu;
 
+import ch.kdev.todo.client.view.base.BaseView;
+
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Tree;
+import com.google.gwt.user.client.ui.TreeItem;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
 
-public class MainMenuView extends Composite implements IMainMenuView {
-
-   private Presenter presenter;
+public class MainMenuView extends BaseView<IMainMenuView.Presenter> implements IMainMenuView {
 
    interface MainMenuUiBinder extends UiBinder<HTMLPanel, MainMenuView> {
    }
 
    private static MainMenuUiBinder binder = GWT.create(MainMenuUiBinder.class);
-
-   @UiField
-   Button                          manageProjectsButton;
+   
+   @UiField Tree tree;
 
    public MainMenuView() {
-      HTMLPanel panel = binder.createAndBindUi(this);
-      initWidget(panel);
+      initWidget(binder.createAndBindUi(this));
    }
-
-   @UiHandler("manageProjectsButton")
-   void manageProjectsButtonClicked(ClickEvent e) {
-      presenter.gotoManageProjectsPlace();
-   }
-
-   @Override
-   public void setPresenter(Presenter presenter) {
-      this.presenter = presenter;
+   
+   @UiHandler("tree")
+   public void onSelection(SelectionEvent<TreeItem> event) {
+      String selectedItemText = event.getSelectedItem().getText();
+      
+      if(selectedItemText.equals("New Task")){
+         this.getPresenter().gotoAddTask();
+      }
    }
 }

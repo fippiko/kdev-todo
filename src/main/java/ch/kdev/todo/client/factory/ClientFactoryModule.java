@@ -15,7 +15,7 @@ public class ClientFactoryModule extends AbstractGinModule {
 
    @Override
    protected void configure() {
-      //bind(IClientFactoryBase.class).to(IClientFactory.class);
+      // bind(IClientFactoryBase.class).to(IClientFactory.class);
       bind(IClientFactory.class).toProvider(ClientFactoryProvider.class);
 
       bind(IActivityFactory.class).toProvider(ActivityFactoryProvider.class);

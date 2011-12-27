@@ -13,8 +13,10 @@ public abstract class BaseActivity extends AbstractActivity implements IBaseActi
    @Inject
    private IActivityFactory activityFactory;
 
-   public BaseActivity() {
+   private boolean          suppressLeaveWarning;
 
+   public BaseActivity() {
+      suppressLeaveWarning = false;
    }
 
    /**
@@ -22,18 +24,35 @@ public abstract class BaseActivity extends AbstractActivity implements IBaseActi
     */
    @Override
    public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-      this.getView().setActivity(this);
+      this.getView().setPresenter(this);
       containerWidget.setWidget(this.getView().asWidget());
    }
-   
+
    /**
     * Redirect to the ErrorHelp Activity
     */
-   public void handleError(String errorMessage){
-      
+   @Override
+   public void handleError(String errorMessage) {
+      // TODO implement
    }
 
    public void goTo(Place place) {
-      this.activityFactory.getPlaceController().goTo(place);
+      activityFactory.getPlaceController().goTo(place);
+      suppressLeaveWarning(false);
+   }
+
+   @Override
+   public boolean isLeaveWarningSuppressed() {
+      return suppressLeaveWarning;
+   }
+
+   @Override
+   public void suppressLeaveWarning() {
+      suppressLeaveWarning(true);
+   }
+
+   @Override
+   public void suppressLeaveWarning(boolean suppress) {
+      suppressLeaveWarning = suppress;
    }
 }

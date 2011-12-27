@@ -1,8 +1,6 @@
-package ch.kdev.todo.client.view.messagebox.error;
+package ch.kdev.todo.client.view.widgets.messagebox.error;
 
-import ch.kdev.todo.client.activity.base.IBaseActivity;
-import ch.kdev.todo.client.view.base.BaseView;
-import ch.kdev.todo.client.view.messagebox.BaseWidget;
+import ch.kdev.todo.client.view.widgets.BaseWidget;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -11,6 +9,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ErrorMessageBox extends BaseWidget implements IErrorMessageBox {
@@ -18,43 +17,45 @@ public class ErrorMessageBox extends BaseWidget implements IErrorMessageBox {
 
    @UiField
    DialogBox                                     dialogBox;
-
    @UiField
-   Button                                        okButton;
+   Button                                        helpButton;
+   @UiField
+   Button                                        closeButton;
+   @UiField
+   TextArea                                      errorTextBox;
 
    interface ErrorMessageBoxDesktopUiBinder extends UiBinder<Widget, ErrorMessageBox> {
    }
 
-   // @UiField
-   // TextBox descriptionTextBox;
-   
    public ErrorMessageBox() {
       uiBinder.createAndBindUi(this);
    }
 
    @Override
    public void setErrorMessage(String errorMessage) {
-      // descriptionTextBox.setText(errorMessage);
+      this.errorTextBox.setText(errorMessage);
    }
 
    @Override
    public String getErrorMessage(String errorMessage) {
-      // return descriptionTextBox.getText();
-      return "";
+      return this.errorTextBox.getText();
    }
 
-   @UiHandler("okButton")
-   void onOkButtonClicked(ClickEvent event) {
-      this.close();
-   }
-
+   @UiHandler("helpButton")
    void onHelpButtonClicked(ClickEvent event) {
-      //this.getActivity().handleError("error");
+      // TODO goto errorhelp place
+      // this.getActivity().goTo(new ErrorHelpPlace);
+   }
+
+   @UiHandler("closeButton")
+   void onCloseButtonClicked(ClickEvent event) {
+      this.close();
    }
 
    @Override
    public void show() {
       this.dialogBox.show();
+      this.dialogBox.center();
    }
 
    @Override

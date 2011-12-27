@@ -40,7 +40,7 @@ public class EditProjectView extends BaseView<IEditProjectView.Presenter> implem
 
    @UiHandler("updateProjectButton")
    public void updateProjectButtonClicked(ClickEvent e) {
-      this.getActivity().saveProject();
+      this.getPresenter().saveProject();
    }
 
    @Override

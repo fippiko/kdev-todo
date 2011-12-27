@@ -17,11 +17,11 @@ import com.google.web.bindery.requestfactory.shared.ServerFailure;
 public class ViewProjectActivity extends BaseActivity implements IViewProjectView.Presenter {
 
    @Inject
-   private IRequestFactory requestFactory;
+   private IRequestFactory  requestFactory;
 
-   private IViewProjectView  view;
+   private IViewProjectView view;
 
-   private ViewProjectPlace  place;
+   private ViewProjectPlace place;
 
    @Inject
    public ViewProjectActivity(IViewFactory viewFactory) {
@@ -51,11 +51,7 @@ public class ViewProjectActivity extends BaseActivity implements IViewProjectVie
          }
       });
    }
-
-   /*
-    * @Override public String mayStop() { return null; }
-    */
-
+   
    @Override
    public void editProject() {
       this.goTo(new EditProjectPlace(this.place.getProjectID()));

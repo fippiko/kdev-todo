@@ -4,6 +4,7 @@ import ch.kdev.todo.client.activity.project.AddProjectActivity;
 import ch.kdev.todo.client.activity.project.EditProjectActivity;
 import ch.kdev.todo.client.activity.project.ManageProjectsActivity;
 import ch.kdev.todo.client.activity.project.ViewProjectActivity;
+import ch.kdev.todo.client.activity.task.AddTaskActivity;
 import ch.kdev.todo.client.mapper.ClientActivityManager;
 import ch.kdev.todo.client.mapper.ClientActivityMapper;
 import ch.kdev.todo.client.mapper.ClientPlaceHistoryHandler;
@@ -37,5 +38,7 @@ public class ActivityFactoryModule extends AbstractGinModule {
       bind(AddProjectActivity.class);
       bind(EditProjectActivity.class);
       bind(ViewProjectActivity.class);
+      
+      bind(AddTaskActivity.class);
    }
 }

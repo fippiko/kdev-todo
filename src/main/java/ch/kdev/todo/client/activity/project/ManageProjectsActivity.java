@@ -19,7 +19,7 @@ import com.google.web.bindery.requestfactory.shared.Receiver;
 public class ManageProjectsActivity extends BaseActivity implements IManageProjectsView.Presenter {
 
    @Inject
-   IRequestFactory           requestFactory;
+   IRequestFactory             requestFactory;
 
    @SuppressWarnings("unused")
    private ManageProjectsPlace place;

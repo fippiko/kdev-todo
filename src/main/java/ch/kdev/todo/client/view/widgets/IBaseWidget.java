@@ -1,4 +1,4 @@
-package ch.kdev.todo.client.view.messagebox;
+package ch.kdev.todo.client.view.widgets;
 
 import ch.kdev.todo.client.view.base.IBaseView;
 

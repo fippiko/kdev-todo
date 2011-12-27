@@ -34,12 +34,12 @@ public class ViewProjectView extends BaseView<IViewProjectView.Presenter> implem
 
    @UiHandler("editProjectButton")
    public void updateProjectButtonClicked(ClickEvent e) {
-      this.getActivity().editProject();
+      this.getPresenter().editProject();
    }
 
    @UiHandler("manageProjectsButton")
    void manageProjectsButtonClicked(ClickEvent e) {
-      this.getActivity().manageProjects();
+      this.getPresenter().manageProjects();
    }
 
    @Override

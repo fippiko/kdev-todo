@@ -1,5 +1,7 @@
 package ch.kdev.todo.client.view.layout;
 
+import ch.kdev.todo.client.activity.base.IBaseActivity;
+import ch.kdev.todo.client.view.base.BaseView;
 import ch.kdev.todo.client.view.mainmenu.MainMenuView;
 
 import com.google.gwt.core.client.GWT;
@@ -11,7 +13,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AppLayout implements IAppLayout {
+public class AppLayout extends BaseView<IAppLayout.Presenter> implements IAppLayout {
 
    private DockLayoutPanel mainLayoutPanel;
 
@@ -35,12 +37,16 @@ public class AppLayout implements IAppLayout {
    public AppLayout() {
    }
 
-   @Override
-   public void setPresenter(Presenter presenter) {
-      mainMenu = (MainMenuView) presenter.getMainMenuView();
-      mainMenu.setPresenter((ch.kdev.todo.client.view.mainmenu.IMainMenuView.Presenter) presenter);
+    @Override
+   public void setPresenter(IBaseActivity baseActivity) {
+       super.setPresenter(baseActivity);
 
-      mainLayoutPanel = binder.createAndBindUi(this);
+       mainMenu = (MainMenuView) getPresenter().getMainMenuView();
+       //the mainmenu and applayout share the same presenter
+       // because of this, this cast is possible
+       mainMenu.setPresenter((IBaseActivity) baseActivity);
+
+       mainLayoutPanel = binder.createAndBindUi(this);
    }
 
    @Override

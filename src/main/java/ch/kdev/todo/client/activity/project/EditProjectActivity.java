@@ -16,14 +16,14 @@ import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class EditProjectActivity extends BaseActivity implements IEditProjectView.Presenter {
    @Inject
-   private IRequestFactory requestFactory;
+   private IRequestFactory  requestFactory;
 
    @SuppressWarnings("unused")
-   private EditProjectPlace  place;
+   private EditProjectPlace place;
 
-   private IEditProjectView  view;
+   private IEditProjectView view;
 
-   private ProjectProxy      project;
+   private ProjectProxy     project;
 
    @Inject
    public EditProjectActivity(IViewFactory viewFactory) {
@@ -88,4 +88,5 @@ public class EditProjectActivity extends BaseActivity implements IEditProjectVie
    public IBaseView getView() {
       return this.view;
    }
+
 }

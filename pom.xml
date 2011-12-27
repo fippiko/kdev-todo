@@ -298,29 +298,6 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-<!-- 
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
-				<executions>
-					<execution>
-						<id>copy-generated-files</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${sourceDirectory}</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${project.build.directory}/generated-sources/gwt</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>-->
-
 
 			<!-- maven test plugin -->
 			<plugin>

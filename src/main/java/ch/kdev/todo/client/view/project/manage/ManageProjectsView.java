@@ -58,27 +58,27 @@ public class ManageProjectsView extends BaseView<IManageProjectsView.Presenter> 
    }
 
    private void reloadProjectList() {
-      this.getActivity().reloadProjectList();
+      this.getPresenter().reloadProjectList();
    }
 
    @UiHandler("viewProjectButton")
    void viewProjectButtonClicked(ClickEvent e) {
-      this.getActivity().viewSelectedProject();
+      this.getPresenter().viewSelectedProject();
    }
 
    @UiHandler("editProjectButton")
    void editProjectButtonClicked(ClickEvent e) {
-      this.getActivity().editSelectedProject();
+      this.getPresenter().editSelectedProject();
    }
 
    @UiHandler("deleteProjectButton")
    void deleteProjectButtonClicked(ClickEvent e) {
-      this.getActivity().deleteSelectedProject();
+      this.getPresenter().deleteSelectedProject();
    }
 
    @UiHandler("addProjectButton")
    void addProjectButtonClicked(ClickEvent e) {
-      this.getActivity().addNewProject();
+      this.getPresenter().addNewProject();
    }
 
    @UiHandler("projectList")

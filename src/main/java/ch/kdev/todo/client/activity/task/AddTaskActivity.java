@@ -1,11 +1,13 @@
-package ch.kdev.todo.client.activity.project;
+package ch.kdev.todo.client.activity.task;
 
 import ch.kdev.todo.client.activity.base.BaseActivity;
 import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
+import ch.kdev.todo.client.place.task.AddTaskPlace;
 import ch.kdev.todo.client.view.base.IBaseView;
 import ch.kdev.todo.client.view.factory.IViewFactory;
 import ch.kdev.todo.client.view.project.add.IAddProjectView;
+import ch.kdev.todo.client.view.task.add.IAddTaskView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 
@@ -13,21 +15,21 @@ import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
-public class AddProjectActivity extends BaseActivity implements IAddProjectView.Presenter{
+public class AddTaskActivity extends BaseActivity implements IAddTaskView.Presenter{
    @Inject
    private ProjectRequest  projectRequest;
 
    @SuppressWarnings("unused")
-   private AddProjectPlace place;
+   private AddTaskPlace place;
 
-   private IAddProjectView view;
+   private IAddTaskView view;
    
    @Inject
-   public AddProjectActivity(IViewFactory viewFactory) {
-      this.view = viewFactory.getAddProjectView();
+   public AddTaskActivity(IViewFactory viewFactory) {
+      this.view = viewFactory.getAddTaskView();
    }
 
-   public AddProjectActivity withPlace(AddProjectPlace place) {
+   public AddTaskActivity withPlace(AddTaskPlace place) {
       this.place = place;
       return this;
    }
@@ -47,12 +49,16 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView.
    }
 
    @Override
-   //public void addNewProject(String projectName, String projectDescription) {
-   public void addNewProject(){
+   public IBaseView getView() {
+      return this.view;
+   }
+
+   @Override
+   public void addNewTask() {
       ProjectProxy newProject = this.projectRequest.create(ProjectProxy.class);
 
-      newProject.setName(this.view.getProjectName());
-      newProject.setDescription(this.view.getProjectDescription());
+      newProject.setName(this.view.getTaskName());
+      newProject.setDescription(this.view.getTaskDescription());
 
       this.projectRequest.persist(newProject).fire(new Receiver<Void>() {
 
@@ -67,10 +73,5 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView.
             view.showError(error.getMessage());
          }
       });
-   }
-
-   @Override
-   public IBaseView getView() {
-      return this.view;
    }
 }

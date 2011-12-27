@@ -5,7 +5,6 @@ import ch.kdev.todo.client.activity.main.MainActivity;
 import ch.kdev.todo.client.factory.ClientFactoryProvider;
 import ch.kdev.todo.client.factory.IClientFactory;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
-import ch.kdev.todo.client.view.factory.IViewFactory;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.EntryPoint;
@@ -22,7 +21,7 @@ public class Todo implements EntryPoint {
    public void onModuleLoad() {
       IClientFactory clientFactory = new ClientFactoryProvider().get();
 
-      IViewFactory viewFactory = clientFactory.getViewFactory();
+      //IViewFactory viewFactory = clientFactory.getViewFactory();
       IActivityFactory activityFactory = clientFactory.getActivityFactory();
       MainActivity appPresenter = activityFactory.getMainActivity();
       ActivityManager activityManager = activityFactory.getActivityManager();

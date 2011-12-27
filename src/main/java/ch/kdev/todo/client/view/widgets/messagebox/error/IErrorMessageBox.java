@@ -1,6 +1,6 @@
-package ch.kdev.todo.client.view.messagebox.error;
+package ch.kdev.todo.client.view.widgets.messagebox.error;
 
-import ch.kdev.todo.client.view.messagebox.IBaseWidget;
+import ch.kdev.todo.client.view.widgets.IBaseWidget;
 
 public interface IErrorMessageBox extends IBaseWidget {
    public interface Presenter {

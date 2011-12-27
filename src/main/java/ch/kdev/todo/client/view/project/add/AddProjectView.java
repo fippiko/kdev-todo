@@ -47,6 +47,7 @@ public class AddProjectView extends BaseView<IAddProjectView.Presenter> implemen
       initWidget(uiBinder.createAndBindUi(this));
    }
 
+   @SuppressWarnings("unused")
    @Inject
    private void initializeValidator(ValidationProcessor validator) {
       this.validator = validator;
@@ -68,19 +69,35 @@ public class AddProjectView extends BaseView<IAddProjectView.Presenter> implemen
    @UiHandler("addProjectButton")
    void addProjectButtonClicked(ClickEvent e) {
       if (this.validator.validate()) {
-         String projectName = projectNameTextBox.getText();
-         String projectDescription = projectDescriptionTextArea.getText();
+         //String projectName = projectNameTextBox.getText();
+         //String projectDescription = projectDescriptionTextArea.getText();
 
-         this.getActivity().addNewProject(projectName, projectDescription);
-      }
-      else {
-         this.showError("This is the error message...");
+         //this.getPresenter().addNewProject(projectName, projectDescription);
+         this.getPresenter().addNewProject();
       }
    }
 
    @Override
    public boolean hasChanges() {
-      // TODO check if this view has changes?
-      return false;
+      boolean hasChanges = false;
+
+      if (projectNameTextBox.getText().length() > 0) {
+         hasChanges = true;
+      }
+      if (projectDescriptionTextArea.getText().length() > 0) {
+         hasChanges = true;
+      }
+
+      return hasChanges;
+   }
+
+   @Override
+   public String getProjectName() {
+      return this.projectNameTextBox.getText();
+   }
+
+   @Override
+   public String getProjectDescription() {
+      return this.projectDescriptionTextArea.getText();
    }
 }

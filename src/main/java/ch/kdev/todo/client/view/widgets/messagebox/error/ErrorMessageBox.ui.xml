@@ -1,0 +1,33 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.panel {
+			background-color: ivory;
+			height: 200px;
+			width: 350px;
+		}
+		
+		.textArea{
+			resize:none;
+		}
+		
+	</ui:style>
+
+	<g:DialogBox ui:field="dialogBox" autoHideEnabled="true" text="An error occured">
+		<g:AbsolutePanel width="450px" height="180px">
+			<g:at left="10" top="31">
+				<g:TextArea width="422px" height="96px" ui:field="errorTextBox" styleName="{style.textArea}" alignment="LEFT" textAlignment="ALIGN_LEFT" readOnly="true"/>
+			</g:at>
+			<g:at left="10" top="10">
+				<g:Label text="Error:"/>
+			</g:at>
+			<g:at left="366" top="141">
+				<g:Button width="74px" height="24px" text="Close" ui:field="closeButton">OK</g:Button>
+			</g:at>
+			<g:at left="286" top="141">
+				<g:Button width="74px" height="24px" text="Help" ui:field="helpButton"></g:Button>
+			</g:at>
+		</g:AbsolutePanel>
+	</g:DialogBox>
+</ui:UiBinder>

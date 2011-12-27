@@ -5,6 +5,7 @@ import ch.kdev.todo.client.place.project.AddProjectPlace;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
+import ch.kdev.todo.client.place.task.AddTaskPlace;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -33,6 +34,9 @@ public class ClientActivityMapper implements ActivityMapper {
       }
       if (place instanceof AddProjectPlace) {
          return this.activityFactory.getAddProjectActivity().withPlace((AddProjectPlace) place);
+      }
+      if (place instanceof AddTaskPlace) {
+         return this.activityFactory.getAddTaskActivity().withPlace((AddTaskPlace) place);
       }
 
       return null;

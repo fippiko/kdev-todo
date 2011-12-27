@@ -5,6 +5,7 @@ import ch.kdev.todo.client.activity.project.AddProjectActivity;
 import ch.kdev.todo.client.activity.project.EditProjectActivity;
 import ch.kdev.todo.client.activity.project.ManageProjectsActivity;
 import ch.kdev.todo.client.activity.project.ViewProjectActivity;
+import ch.kdev.todo.client.activity.task.AddTaskActivity;
 import ch.kdev.todo.client.factory.ClientFactoryModule;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -28,10 +29,13 @@ public interface IActivityFactory extends Ginjector {
    PlaceHistoryHandler getPlaceHistoryHandler();
 
    MainActivity getMainActivity();
-   
+
    // Project-Activities
    ManageProjectsActivity getManageProjectsActivity();
    AddProjectActivity getAddProjectActivity();
    ViewProjectActivity getViewProjectActivity();
    EditProjectActivity getEditProjectActivity();
+
+   // task - activities
+   AddTaskActivity getAddTaskActivity();
 }
