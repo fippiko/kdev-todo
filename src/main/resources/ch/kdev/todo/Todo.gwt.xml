@@ -5,8 +5,8 @@
 
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->
-  <!-- any one of the following lines.                            -->
-  <inherits name='com.google.gwt.user.theme.standard.Standard'/> 
+  <!-- any one of the following lines.                 			  -->
+  <inherits name='com.google.gwt.user.theme.standard.Standard'/>
   <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
   
@@ -15,6 +15,7 @@
   <!-- Other module inherits                                      -->
   <inherits name="com.google.gwt.activity.Activity"/>
   <inherits name="com.google.gwt.place.Place"/>
+  <inherits name="com.google.gwt.i18n.I18N"/>
   <inherits name="com.google.gwt.inject.Inject"/>
   <inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
   <inherits name='eu.maydu.gwt.validation.ValidationLibrary' />

@@ -1,6 +1,9 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
 	xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
 
+	<ui:with field='messages'
+		type='ch.kdev.todo.client.view.resources.ClientMessages' />
+
 	<ui:style>
 		.menu {
 			width: 200px;
@@ -18,11 +21,11 @@
 
 	<g:HTMLPanel ui:field='menuView' styleName='{style.menuView}'>
 		<g:Tree height="80px" ui:field="tree">
-			<g:TreeItem text="Manage Projects" state="true">
-				<g:TreeItem text="Add Project"/>
+			<g:TreeItem text="{messages.manageProjects}" state="true">
+				<g:TreeItem text="{messages.addProject}" />
 			</g:TreeItem>
 			<g:TreeItem text="Manage Tasks" state="true">
-				<g:TreeItem text="New Task"/>
+				<g:TreeItem text="New Task" />
 			</g:TreeItem>
 		</g:Tree>
 	</g:HTMLPanel>

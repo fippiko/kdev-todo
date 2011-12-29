@@ -30,7 +30,7 @@ public interface IActivityFactory extends Ginjector {
 
    MainActivity getMainActivity();
 
-   // Project-Activities
+   // project - activities
    ManageProjectsActivity getManageProjectsActivity();
    AddProjectActivity getAddProjectActivity();
    ViewProjectActivity getViewProjectActivity();

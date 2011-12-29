@@ -14,7 +14,11 @@ import com.google.gwt.place.shared.WithTokenizers;
  * annotation or by extending PlaceHistoryMapperWithFactory and creating a
  * separate TokenizerFactory.
  */
-@WithTokenizers({ManageProjectsPlace.Tokenizer.class, EditProjectPlace.Tokenizer.class, AddProjectPlace.Tokenizer.class, ViewProjectPlace.Tokenizer.class})
+@WithTokenizers({ManageProjectsPlace.Tokenizer.class, 
+   EditProjectPlace.Tokenizer.class, 
+   AddProjectPlace.Tokenizer.class, 
+   ViewProjectPlace.Tokenizer.class,
+   AddProjectPlace.Tokenizer.class})
 public interface ClientPlaceHistoryMapper extends PlaceHistoryMapper {
 
 }

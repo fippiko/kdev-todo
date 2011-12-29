@@ -46,19 +46,19 @@ public class AddProjectView extends BaseView<IAddProjectView.Presenter> implemen
    public AddProjectView() {
       initWidget(uiBinder.createAndBindUi(this));
    }
-
-   @SuppressWarnings("unused")
-   @Inject
-   private void initializeValidator(ValidationProcessor validator) {
-      this.validator = validator;
-      this.validator.addValidators("name", new NotEmptyValidator(this.projectNameTextBox).addActionForFailure(new LabelTextAction(this.projectNameErrorLabel)).addActionForFailure(new StyleAction(this.getResources().css().validationFailedBorder())));
-      this.validator.addValidators("description", new NotEmptyValidator(this.projectDescriptionTextArea).addActionForFailure(new LabelTextAction(this.projectDescriptionErrorLabel)).addActionForFailure(new StyleAction(this.getResources().css().validationFailedBorder())));
+  
+   private void initializeValidator() {
+      this.validator = this.getViewFactory().getValidator();
+      
+      this.validator.addValidators("name", new NotEmptyValidator(this.projectNameTextBox).addActionForFailure(new LabelTextAction(this.projectNameErrorLabel)).addActionForFailure(new StyleAction(this.getCssResource().validationFailedBorder())));
+      this.validator.addValidators("description", new NotEmptyValidator(this.projectDescriptionTextArea).addActionForFailure(new LabelTextAction(this.projectDescriptionErrorLabel)).addActionForFailure(new StyleAction(this.getCssResource().validationFailedBorder())));
    }
 
-   private ClientResources getResources() {
-      ClientResources.instance.css().ensureInjected();
-
-      return ClientResources.instance;
+   @Override
+   protected void onLoad() {
+      super.onLoad();
+      
+      this.initializeValidator();
    }
 
    @Override
@@ -69,10 +69,6 @@ public class AddProjectView extends BaseView<IAddProjectView.Presenter> implemen
    @UiHandler("addProjectButton")
    void addProjectButtonClicked(ClickEvent e) {
       if (this.validator.validate()) {
-         //String projectName = projectNameTextBox.getText();
-         //String projectDescription = projectDescriptionTextArea.getText();
-
-         //this.getPresenter().addNewProject(projectName, projectDescription);
          this.getPresenter().addNewProject();
       }
    }

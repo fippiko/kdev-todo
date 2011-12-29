@@ -1,6 +1,7 @@
 package ch.kdev.todo.client.view.mainmenu;
 
 import ch.kdev.todo.client.view.base.BaseView;
+import ch.kdev.todo.client.view.resources.ClientMessages;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -28,8 +29,13 @@ public class MainMenuView extends BaseView<IMainMenuView.Presenter> implements I
    public void onSelection(SelectionEvent<TreeItem> event) {
       String selectedItemText = event.getSelectedItem().getText();
       
+      ClientMessages messages = this.getViewFactory().getClientMessages();
+      
       if(selectedItemText.equals("New Task")){
          this.getPresenter().gotoAddTask();
+      }
+      else if(selectedItemText.equals(messages.manageProjects())){
+         this.getPresenter().gotoManageProjectsPlace();
       }
    }
 }

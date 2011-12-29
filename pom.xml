@@ -220,10 +220,7 @@
 					<source>${target.jdk}</source>
 					<target>${target.jdk}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
-					<!-- 
-					<excludes>
-                        <exclude>**/AppStyleDesktop.java</exclude>
-                    </excludes> -->
+					<!-- <excludes> <exclude>**/AppStyleDesktop.java</exclude> </excludes> -->
 				</configuration>
 			</plugin>
 
@@ -261,8 +258,11 @@
 					<mode>htmlunit</mode>
 					<module>ch.kdev.todo.Todo</module>
 					<cssFiles>
-						<cssFile>ch/kdev/todo/client/view/resources/AppStyleDesktop.css</cssFile>
+						<cssFile>ch/kdev/todo/client/view/resources/ClientStyle.css</cssFile>
 					</cssFiles>
+					<i18nMessagesBundles>
+						<i18nMessagesBundle>ch.kdev.todo.client.view.resources.ClientMessages</i18nMessagesBundle>
+					</i18nMessagesBundles>
 					<generateDirectory>${sourceDirectory}</generateDirectory>
 				</configuration>
 				<executions>
@@ -271,6 +271,12 @@
 						<phase>generate-sources</phase>
 						<goals>
 							<goal>css</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>i18n-generation</id>
+						<goals>
+							<goal>i18n</goal>
 						</goals>
 					</execution>
 					<execution>
@@ -362,6 +368,7 @@
 										</versionRange>
 										<goals>
 											<goal>css</goal>
+											<goal>i18n</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>

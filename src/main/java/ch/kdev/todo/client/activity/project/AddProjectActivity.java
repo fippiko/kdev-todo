@@ -7,6 +7,7 @@ import ch.kdev.todo.client.view.base.IBaseView;
 import ch.kdev.todo.client.view.factory.IViewFactory;
 import ch.kdev.todo.client.view.project.add.IAddProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
+import ch.kdev.todo.shared.requestfactory.IRequestFactory;
 import ch.kdev.todo.shared.requestfactory.ProjectRequest;
 
 import com.google.inject.Inject;
@@ -15,7 +16,7 @@ import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class AddProjectActivity extends BaseActivity implements IAddProjectView.Presenter{
    @Inject
-   private ProjectRequest  projectRequest;
+   private IRequestFactory  requestFactory;
 
    @SuppressWarnings("unused")
    private AddProjectPlace place;
@@ -49,12 +50,13 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView.
    @Override
    //public void addNewProject(String projectName, String projectDescription) {
    public void addNewProject(){
-      ProjectProxy newProject = this.projectRequest.create(ProjectProxy.class);
+      ProjectRequest projectRequest = this.requestFactory.projectRequest();
+      ProjectProxy newProject = projectRequest.create(ProjectProxy.class);
 
       newProject.setName(this.view.getProjectName());
       newProject.setDescription(this.view.getProjectDescription());
 
-      this.projectRequest.persist(newProject).fire(new Receiver<Void>() {
+      projectRequest.persist(newProject).fire(new Receiver<Void>() {
 
          @Override
          public void onSuccess(Void arg0) {

@@ -24,6 +24,6 @@ public class ClientFactoryModule extends AbstractGinModule {
 
       bind(IRequestFactory.class).toProvider(RequestFactoryProvider.class);
 
-      bind(ProjectRequest.class).toProvider(ProjectRequestProvider.class);
+      //bind(ProjectRequest.class).toProvider(ProjectRequestProvider.class);
    }
 }
