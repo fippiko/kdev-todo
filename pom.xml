@@ -262,6 +262,7 @@
 					</cssFiles>
 					<i18nMessagesBundles>
 						<i18nMessagesBundle>ch.kdev.todo.client.view.resources.ClientMessages</i18nMessagesBundle>
+						<i18nMessagesBundle>ch.kdev.todo.client.view.resources.ClientConstants</i18nMessagesBundle>
 					</i18nMessagesBundles>
 					<generateDirectory>${sourceDirectory}</generateDirectory>
 				</configuration>

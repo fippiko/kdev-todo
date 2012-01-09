@@ -7,6 +7,7 @@ import ch.kdev.todo.client.view.project.add.IAddProjectView;
 import ch.kdev.todo.client.view.project.edit.IEditProjectView;
 import ch.kdev.todo.client.view.project.manage.IManageProjectsView;
 import ch.kdev.todo.client.view.project.view.IViewProjectView;
+import ch.kdev.todo.client.view.resources.ClientConstants;
 import ch.kdev.todo.client.view.resources.ClientMessages;
 import ch.kdev.todo.client.view.resources.ClientResources;
 import ch.kdev.todo.client.view.task.add.IAddTaskView;
@@ -14,7 +15,6 @@ import ch.kdev.todo.client.view.widgets.messagebox.error.IErrorMessageBox;
 
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
-import com.google.gwt.resources.client.CssResource;
 
 import eu.maydu.gwt.validation.client.ValidationProcessor;
 
@@ -40,6 +40,7 @@ public interface IViewFactory extends Ginjector {
    // resources
    ClientResources getClientResources();
    ClientMessages getClientMessages();
+   ClientConstants getClientConstants();
 
    // various
    ValidationProcessor getValidator();

@@ -1,5 +1,7 @@
 package ch.kdev.todo.shared.proxy;
 
+import java.util.List;
+
 import ch.kdev.todo.domain.Project;
 import ch.kdev.todo.server.locator.ProjectLocator;
 
@@ -20,4 +22,6 @@ public interface ProjectProxy extends EntityProxy {
    public String getDescription();
 
    public void setDescription(String description);
+
+   public List<TaskProxy> getTasks();
 }

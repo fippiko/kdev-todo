@@ -1,16 +1,18 @@
 package ch.kdev.todo.client.activity.task;
 
+import java.util.HashMap;
 import java.util.List;
 
 import ch.kdev.todo.client.activity.base.BaseActivity;
-import ch.kdev.todo.client.place.project.ManageProjectsPlace;
+import ch.kdev.todo.client.place.project.ViewProjectPlace;
 import ch.kdev.todo.client.place.task.AddTaskPlace;
 import ch.kdev.todo.client.view.base.IBaseView;
 import ch.kdev.todo.client.view.factory.IViewFactory;
 import ch.kdev.todo.client.view.task.add.IAddTaskView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
+import ch.kdev.todo.shared.proxy.TaskProxy;
 import ch.kdev.todo.shared.requestfactory.IRequestFactory;
-import ch.kdev.todo.shared.requestfactory.ProjectRequest;
+import ch.kdev.todo.shared.requestfactory.TaskRequest;
 
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
@@ -19,16 +21,20 @@ import com.google.web.bindery.requestfactory.shared.ServerFailure;
 public class AddTaskActivity extends BaseActivity implements IAddTaskView.Presenter {
 
    @Inject
-   IRequestFactory      requestFactory;
+   IRequestFactory                     requestFactory;
 
    @SuppressWarnings("unused")
-   private AddTaskPlace place;
+   private AddTaskPlace                place;
 
-   private IAddTaskView view;
+   private IAddTaskView                view;
+
+   private HashMap<Long, ProjectProxy> projects;
 
    @Inject
    public AddTaskActivity(IViewFactory viewFactory) {
       this.view = viewFactory.getAddTaskView();
+
+      this.projects = new HashMap<Long, ProjectProxy>();
    }
 
    public AddTaskActivity withPlace(AddTaskPlace place) {
@@ -57,18 +63,21 @@ public class AddTaskActivity extends BaseActivity implements IAddTaskView.Presen
 
    @Override
    public void addNewTask() {
-      ProjectRequest projectRequest = this.requestFactory.projectRequest();
-      ProjectProxy newProject = projectRequest.create(ProjectProxy.class);
+      TaskRequest taskRequest = this.requestFactory.taskRequest();
+      TaskProxy newTask = taskRequest.create(TaskProxy.class);
 
-      newProject.setName(this.view.getTaskName());
-      newProject.setDescription(this.view.getTaskDescription());
+      final Long projectId = this.view.getProjectId();
 
-      projectRequest.persist(newProject).fire(new Receiver<Void>() {
+      newTask.setName(this.view.getTaskName());
+      newTask.setDescription(this.view.getTaskDescription());
+      newTask.setProject(this.projects.get(projectId));
+
+      taskRequest.persist(newTask).fire(new Receiver<Void>() {
 
          @Override
          public void onSuccess(Void arg0) {
             suppressLeaveWarning();
-            goTo(new ManageProjectsPlace());
+            goTo(new ViewProjectPlace(projectId));
          }
 
          @Override
@@ -84,8 +93,15 @@ public class AddTaskActivity extends BaseActivity implements IAddTaskView.Presen
 
          @Override
          public void onSuccess(List<ProjectProxy> response) {
-            view.initProjectList(response);
+            initProjectList(response);
          }
       });
+   }
+
+   private void initProjectList(List<ProjectProxy> projectList) {
+      for (ProjectProxy project : projectList) {
+         this.projects.put(project.getId(), project);
+         this.view.addProject(project.getName(), project.getId().toString());
+      }
    }
 }

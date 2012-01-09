@@ -5,8 +5,6 @@ import ch.kdev.todo.client.activity.factory.IActivityFactory;
 import ch.kdev.todo.client.view.factory.IViewFactory;
 import ch.kdev.todo.client.view.factory.ViewFactoryProvider;
 import ch.kdev.todo.shared.requestfactory.IRequestFactory;
-import ch.kdev.todo.shared.requestfactory.ProjectRequest;
-import ch.kdev.todo.shared.requestfactory.ProjectRequestProvider;
 import ch.kdev.todo.shared.requestfactory.RequestFactoryProvider;
 
 import com.google.gwt.inject.client.AbstractGinModule;
@@ -24,6 +22,6 @@ public class ClientFactoryModule extends AbstractGinModule {
 
       bind(IRequestFactory.class).toProvider(RequestFactoryProvider.class);
 
-      //bind(ProjectRequest.class).toProvider(ProjectRequestProvider.class);
+      // bind(ProjectRequest.class).toProvider(ProjectRequestProvider.class);
    }
 }

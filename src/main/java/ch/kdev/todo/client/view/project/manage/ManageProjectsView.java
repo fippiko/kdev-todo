@@ -12,6 +12,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -22,19 +23,22 @@ public class ManageProjectsView extends BaseView<IManageProjectsView.Presenter> 
    }
 
    @UiField
-   ListBox projectList;
+   ListBox   projectList;
 
    @UiField
-   Button  viewProjectButton;
+   Button    viewProjectButton;
 
    @UiField
-   Button  editProjectButton;
+   Button    editProjectButton;
 
    @UiField
-   Button  addProjectButton;
+   Button    addProjectButton;
 
    @UiField
-   Button  deleteProjectButton;
+   Button    deleteProjectButton;
+
+   @UiField
+   FlowPanel subViewPanel;
 
    public ManageProjectsView() {
       initWidget(uiBinder.createAndBindUi(this));

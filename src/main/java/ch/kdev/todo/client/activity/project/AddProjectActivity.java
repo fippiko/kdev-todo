@@ -14,15 +14,15 @@ import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
-public class AddProjectActivity extends BaseActivity implements IAddProjectView.Presenter{
+public class AddProjectActivity extends BaseActivity implements IAddProjectView.Presenter {
    @Inject
-   private IRequestFactory  requestFactory;
+   private IRequestFactory requestFactory;
 
    @SuppressWarnings("unused")
    private AddProjectPlace place;
 
    private IAddProjectView view;
-   
+
    @Inject
    public AddProjectActivity(IViewFactory viewFactory) {
       this.view = viewFactory.getAddProjectView();
@@ -38,18 +38,18 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView.
     */
    @Override
    public String mayStop() {
-      if(!this.isLeaveWarningSuppressed()){
+      if (!this.isLeaveWarningSuppressed()) {
          if (this.view.hasChanges()) {
             return "Please hold on. You'll lose all changes.";
          }
       }
-     
+
       return null;
    }
 
    @Override
-   //public void addNewProject(String projectName, String projectDescription) {
-   public void addNewProject(){
+   // public void addNewProject(String projectName, String projectDescription) {
+   public void addNewProject() {
       ProjectRequest projectRequest = this.requestFactory.projectRequest();
       ProjectProxy newProject = projectRequest.create(ProjectProxy.class);
 

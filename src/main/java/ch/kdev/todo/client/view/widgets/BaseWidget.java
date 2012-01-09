@@ -9,8 +9,8 @@ public abstract class BaseWidget implements IBaseWidget {
    public void setView(IBaseView view) {
       this.view = view;
    }
-   
-   protected IBaseView getView(){
+
+   protected IBaseView getView() {
       return this.view;
    }
 }

@@ -37,16 +37,16 @@ public class AppLayout extends BaseView<IAppLayout.Presenter> implements IAppLay
    public AppLayout() {
    }
 
-    @Override
+   @Override
    public void setPresenter(IBaseActivity baseActivity) {
-       super.setPresenter(baseActivity);
+      super.setPresenter(baseActivity);
 
-       mainMenu = (MainMenuView) getPresenter().getMainMenuView();
-       //the mainmenu and applayout share the same presenter
-       // because of this, this cast is possible
-       mainMenu.setPresenter((IBaseActivity) baseActivity);
+      mainMenu = (MainMenuView) getPresenter().getMainMenuView();
+      // the mainmenu and applayout share the same presenter
+      // because of this, this cast is possible
+      mainMenu.setPresenter((IBaseActivity) baseActivity);
 
-       mainLayoutPanel = binder.createAndBindUi(this);
+      mainLayoutPanel = binder.createAndBindUi(this);
    }
 
    @Override

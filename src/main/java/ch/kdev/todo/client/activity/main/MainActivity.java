@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
-public class MainActivity extends BaseActivity implements IAppLayout.Presenter, IMainMenuView.Presenter{
+public class MainActivity extends BaseActivity implements IAppLayout.Presenter, IMainMenuView.Presenter {
 
    @Inject
    private IViewFactory viewFactory;
@@ -21,7 +21,7 @@ public class MainActivity extends BaseActivity implements IAppLayout.Presenter, 
    public MainActivity() {
 
    }
-   
+
    @Override
    public void gotoDefaultPlace() {
       this.gotoManageProjectsPlace();

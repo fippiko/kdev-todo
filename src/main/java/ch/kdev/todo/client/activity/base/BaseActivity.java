@@ -55,4 +55,8 @@ public abstract class BaseActivity extends AbstractActivity implements IBaseActi
    public void suppressLeaveWarning(boolean suppress) {
       suppressLeaveWarning = suppress;
    }
+
+   protected IActivityFactory getActivityFactory() {
+      return this.activityFactory;
+   }
 }

@@ -30,6 +30,18 @@
 			</tr>
 			
 			<tr>
+				<td>
+					<g:Label>Task List:</g:Label>
+				</td>
+				
+				<td>
+					<g:ListBox ui:field="taskList">
+						
+					</g:ListBox>
+				</td>
+			</tr>
+			
+			<tr>
 				<td></td>
 				
 				<td>

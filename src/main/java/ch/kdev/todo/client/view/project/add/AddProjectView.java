@@ -1,7 +1,6 @@
 package ch.kdev.todo.client.view.project.add;
 
 import ch.kdev.todo.client.view.base.BaseView;
-import ch.kdev.todo.client.view.resources.ClientResources;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -13,7 +12,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.inject.Inject;
 
 import eu.maydu.gwt.validation.client.ValidationProcessor;
 import eu.maydu.gwt.validation.client.actions.LabelTextAction;
@@ -46,10 +44,10 @@ public class AddProjectView extends BaseView<IAddProjectView.Presenter> implemen
    public AddProjectView() {
       initWidget(uiBinder.createAndBindUi(this));
    }
-  
+
    private void initializeValidator() {
       this.validator = this.getViewFactory().getValidator();
-      
+
       this.validator.addValidators("name", new NotEmptyValidator(this.projectNameTextBox).addActionForFailure(new LabelTextAction(this.projectNameErrorLabel)).addActionForFailure(new StyleAction(this.getCssResource().validationFailedBorder())));
       this.validator.addValidators("description", new NotEmptyValidator(this.projectDescriptionTextArea).addActionForFailure(new LabelTextAction(this.projectDescriptionErrorLabel)).addActionForFailure(new StyleAction(this.getCssResource().validationFailedBorder())));
    }
@@ -57,7 +55,7 @@ public class AddProjectView extends BaseView<IAddProjectView.Presenter> implemen
    @Override
    protected void onLoad() {
       super.onLoad();
-      
+
       this.initializeValidator();
    }
 

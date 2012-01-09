@@ -38,7 +38,7 @@ public class ActivityFactoryModule extends AbstractGinModule {
       bind(AddProjectActivity.class);
       bind(EditProjectActivity.class);
       bind(ViewProjectActivity.class);
-      
+
       bind(AddTaskActivity.class);
    }
 }

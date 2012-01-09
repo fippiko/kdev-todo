@@ -1,7 +1,6 @@
 package ch.kdev.todo.client.view.project.view;
 
 import ch.kdev.todo.client.view.base.BaseView;
-import ch.kdev.todo.shared.proxy.ProjectProxy;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -9,6 +8,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -28,6 +28,9 @@ public class ViewProjectView extends BaseView<IViewProjectView.Presenter> implem
    @UiField
    Button   editProjectButton;
 
+   @UiField
+   ListBox  taskList;
+
    public ViewProjectView() {
       initWidget(uiBinder.createAndBindUi(this));
    }
@@ -43,8 +46,17 @@ public class ViewProjectView extends BaseView<IViewProjectView.Presenter> implem
    }
 
    @Override
-   public void setProjectAttributes(ProjectProxy project) {
-      this.projectNameTextBox.setText(project.getName());
-      this.projectDescriptionTextArea.setText(project.getDescription());
+   public void setProjectName(String name) {
+      this.projectNameTextBox.setText(name);
+   }
+
+   @Override
+   public void setProjectDescription(String description) {
+      this.projectDescriptionTextArea.setText(description);
+   }
+
+   @Override
+   public void addProjectTask(String task) {
+      this.taskList.addItem(task);
    }
 }

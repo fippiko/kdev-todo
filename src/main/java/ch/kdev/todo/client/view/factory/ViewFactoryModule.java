@@ -12,6 +12,7 @@ import ch.kdev.todo.client.view.project.manage.IManageProjectsView;
 import ch.kdev.todo.client.view.project.manage.ManageProjectsView;
 import ch.kdev.todo.client.view.project.view.IViewProjectView;
 import ch.kdev.todo.client.view.project.view.ViewProjectView;
+import ch.kdev.todo.client.view.resources.ClientConstants;
 import ch.kdev.todo.client.view.resources.ClientMessages;
 import ch.kdev.todo.client.view.resources.ClientResources;
 import ch.kdev.todo.client.view.task.add.AddTaskView;
@@ -19,7 +20,6 @@ import ch.kdev.todo.client.view.task.add.IAddTaskView;
 import ch.kdev.todo.client.view.widgets.messagebox.error.ErrorMessageBox;
 import ch.kdev.todo.client.view.widgets.messagebox.error.IErrorMessageBox;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
 
@@ -38,6 +38,7 @@ public class ViewFactoryModule extends AbstractGinModule {
       // resources
       bind(ClientResources.class).in(Singleton.class);
       bind(ClientMessages.class).in(Singleton.class);
+      bind(ClientConstants.class).in(Singleton.class);
 
       // project - views
       bind(IManageProjectsView.class).to(ManageProjectsView.class).in(Singleton.class);

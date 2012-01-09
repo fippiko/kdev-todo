@@ -21,7 +21,7 @@ public class Todo implements EntryPoint {
    public void onModuleLoad() {
       IClientFactory clientFactory = new ClientFactoryProvider().get();
 
-      //IViewFactory viewFactory = clientFactory.getViewFactory();
+      // IViewFactory viewFactory = clientFactory.getViewFactory();
       IActivityFactory activityFactory = clientFactory.getActivityFactory();
       MainActivity appPresenter = activityFactory.getMainActivity();
       ActivityManager activityManager = activityFactory.getActivityManager();

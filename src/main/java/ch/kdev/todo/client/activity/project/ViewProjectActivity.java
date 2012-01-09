@@ -8,6 +8,7 @@ import ch.kdev.todo.client.view.base.IBaseView;
 import ch.kdev.todo.client.view.factory.IViewFactory;
 import ch.kdev.todo.client.view.project.view.IViewProjectView;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
+import ch.kdev.todo.shared.proxy.TaskProxy;
 import ch.kdev.todo.shared.requestfactory.IRequestFactory;
 
 import com.google.inject.Inject;
@@ -30,18 +31,17 @@ public class ViewProjectActivity extends BaseActivity implements IViewProjectVie
 
    public ViewProjectActivity withPlace(ViewProjectPlace place) {
       this.place = place;
-      this.loadProject(place.getProjectID());
+      this.loadProject(place.getProjectId());
 
       return this;
    }
 
-   private void loadProject(String projectID) {
-      long projectIdAsLong = Integer.valueOf(projectID);
-      requestFactory.projectRequest().findProject(projectIdAsLong).fire(new Receiver<ProjectProxy>() {
+   private void loadProject(Long projectID) {
+      requestFactory.projectRequest().findProject(projectID).fire(new Receiver<ProjectProxy>() {
 
          @Override
          public void onSuccess(ProjectProxy receivedProject) {
-            view.setProjectAttributes(receivedProject);
+            setProject(receivedProject);
          }
 
          @Override
@@ -51,10 +51,21 @@ public class ViewProjectActivity extends BaseActivity implements IViewProjectVie
          }
       });
    }
-   
+
+   private void setProject(ProjectProxy project) {
+      this.view.setProjectName(project.getName());
+      this.view.setProjectDescription(project.getDescription());
+
+      if (project.getTasks() != null) {
+         for (TaskProxy task : project.getTasks()) {
+            this.view.addProjectTask(task.getName());
+         }
+      }
+   }
+
    @Override
    public void editProject() {
-      this.goTo(new EditProjectPlace(this.place.getProjectID()));
+      this.goTo(new EditProjectPlace(this.place.getProjectId()));
    }
 
    @Override

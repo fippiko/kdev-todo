@@ -62,7 +62,7 @@ public class ManageProjectsActivity extends BaseActivity implements IManageProje
 
    @Override
    public void editSelectedProject() {
-      String selectedProjectId = this.view.getSelectedProjectId();
+      Long selectedProjectId = this.getSelectedProjectId();
 
       this.goTo(new EditProjectPlace(selectedProjectId));
    }
@@ -74,9 +74,15 @@ public class ManageProjectsActivity extends BaseActivity implements IManageProje
 
    @Override
    public void viewSelectedProject() {
-      String selectedProjectId = this.view.getSelectedProjectId();
+      Long selectedProjectId = this.getSelectedProjectId();
 
       this.goTo(new ViewProjectPlace(selectedProjectId));
+   }
+
+   private Long getSelectedProjectId() {
+      String selectedProjectId = this.view.getSelectedProjectId();
+
+      return Long.parseLong(selectedProjectId);
    }
 
    @Override

@@ -32,14 +32,13 @@ public class EditProjectActivity extends BaseActivity implements IEditProjectVie
 
    public EditProjectActivity withPlace(EditProjectPlace place) {
       this.place = place;
-      this.loadProject(place.getProjectID());
+      this.loadProject(place.getProjectId());
 
       return this;
    }
 
-   private void loadProject(String projectID) {
-      long projectIdAsLong = Integer.valueOf(projectID);
-      this.requestFactory.projectRequest().findProject(projectIdAsLong).fire(new Receiver<ProjectProxy>() {
+   private void loadProject(Long projectId) {
+      this.requestFactory.projectRequest().findProject(projectId).fire(new Receiver<ProjectProxy>() {
 
          @Override
          public void onSuccess(ProjectProxy receivedProject) {
@@ -73,7 +72,7 @@ public class EditProjectActivity extends BaseActivity implements IEditProjectVie
 
          @Override
          public void onSuccess(Void response) {
-            goTo(new ViewProjectPlace(project.getId().toString()));
+            goTo(new ViewProjectPlace(project.getId()));
          }
 
          @Override

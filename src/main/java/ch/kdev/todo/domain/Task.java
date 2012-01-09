@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -14,12 +15,14 @@ import org.hibernate.annotations.Type;
 @Table(name = "tasks")
 public class Task {
    private Long    id;
+   private Long    version;
    private String  name;
    private String  description;
 
    private Project project;
 
    public Task() {
+      this.version = (long) 1;
    }
 
    @Id
@@ -53,11 +56,25 @@ public class Task {
 
    @ManyToOne
    @NotNull
+   //@Cascade(value = {CascadeType.ALL})
    public Project getProject() {
       return this.project;
    }
 
    public void setProject(Project project) {
       this.project = project;
+   }
+
+   public void setVersion(Long version) {
+      this.version = version;
+   }
+
+   public Long getVersion() {
+      return this.version;
+   }
+
+   @PrePersist
+   void onPersist() {
+      this.version++;
    }
 }

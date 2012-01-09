@@ -6,7 +6,7 @@ import ch.kdev.todo.client.view.base.IBaseView;
 import ch.kdev.todo.client.view.base.IPresenter;
 import ch.kdev.todo.shared.proxy.ProjectProxy;
 
-public interface IManageProjectsView extends IBaseView{
+public interface IManageProjectsView extends IBaseView {
 
    public interface Presenter extends IPresenter {
       void reloadProjectList();
@@ -19,7 +19,7 @@ public interface IManageProjectsView extends IBaseView{
 
       void viewSelectedProject();
    }
-   
+
    void updateProjectList(List<ProjectProxy> response);
 
    String getSelectedProjectId();

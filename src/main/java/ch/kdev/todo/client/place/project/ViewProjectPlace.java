@@ -4,25 +4,27 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class ViewProjectPlace extends Place {
-   private String projectId;
+   private Long projectId;
 
-   public ViewProjectPlace(String projectId) {
+   public ViewProjectPlace(Long projectId) {
       this.projectId = projectId;
    }
 
-   public String getProjectID() {
+   public Long getProjectId() {
       return projectId;
    }
 
    public static class Tokenizer implements PlaceTokenizer<ViewProjectPlace> {
       @Override
       public String getToken(ViewProjectPlace place) {
-         return place.getProjectID();
+         return place.getProjectId().toString();
+
       }
 
       @Override
       public ViewProjectPlace getPlace(String token) {
-         return new ViewProjectPlace(token);
+         Long projectId = Long.parseLong(token);
+         return new ViewProjectPlace(projectId);
       }
 
    }

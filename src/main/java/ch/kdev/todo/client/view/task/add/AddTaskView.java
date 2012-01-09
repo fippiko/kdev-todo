@@ -1,10 +1,6 @@
 package ch.kdev.todo.client.view.task.add;
 
-import java.util.List;
-
 import ch.kdev.todo.client.view.base.BaseView;
-import ch.kdev.todo.client.view.resources.ClientResources;
-import ch.kdev.todo.shared.proxy.ProjectProxy;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -17,7 +13,6 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.inject.Inject;
 
 import eu.maydu.gwt.validation.client.ValidationProcessor;
 import eu.maydu.gwt.validation.client.actions.LabelTextAction;
@@ -57,18 +52,18 @@ public class AddTaskView extends BaseView<IAddTaskView.Presenter> implements IAd
    public AddTaskView() {
       initWidget(uiBinder.createAndBindUi(this));
    }
-   
+
    @Override
    protected void onLoad() {
       super.onLoad();
-   
+
       initializeValidator();
       this.getPresenter().initProjectList();
    }
 
    private void initializeValidator() {
       this.validator = this.getViewFactory().getValidator();
-      
+
       this.validator.addValidators("name", new NotEmptyValidator(this.taskNameTextBox).addActionForFailure(new LabelTextAction(this.taskNameErrorLabel)).addActionForFailure(new StyleAction(this.getCssResource().validationFailedBorder())));
       this.validator.addValidators("description", new NotEmptyValidator(this.taskDescriptionTextArea).addActionForFailure(new LabelTextAction(this.taskDescriptionErrorLabel)).addActionForFailure(new StyleAction(this.getCssResource().validationFailedBorder())));
       this.validator.addValidators("projectId", new ListBoxValidator(this.projectListBox).addActionForFailure(new LabelTextAction(this.projectListBoxErrorLabel)).addActionForFailure(new StyleAction(this.getCssResource().validationFailedBorder())));
@@ -111,19 +106,14 @@ public class AddTaskView extends BaseView<IAddTaskView.Presenter> implements IAd
    }
 
    @Override
-   public int getProjectId() {
+   public Long getProjectId() {
       int selectedIndex = this.projectListBox.getSelectedIndex();
       String selectedValue = this.projectListBox.getValue(selectedIndex);
-      return Integer.parseInt(selectedValue);
+      return Long.parseLong(selectedValue);
    }
 
    @Override
-   public void initProjectList(List<ProjectProxy> projects) {
-      this.projectListBox.clear();
-      
-      this.projectListBox.clear();
-      for (ProjectProxy project : projects) {
-         this.projectListBox.addItem(project.getName(), project.getId().toString());
-      }
+   public void addProject(String name, String id) {
+      this.projectListBox.addItem(name, id);
    }
 }

@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 public interface IAppLayout extends IBaseView {
 
-   public interface Presenter extends IPresenter{
+   public interface Presenter extends IPresenter {
       public AcceptsOneWidget getContentContainer();
 
       public Widget getMainLayoutPanel();
