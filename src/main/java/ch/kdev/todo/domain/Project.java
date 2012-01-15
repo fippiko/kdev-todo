@@ -7,14 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
-import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
-@Table(name = "projects")
 public class Project {
    private Long       id;
    private Long       version;
@@ -58,7 +58,8 @@ public class Project {
       this.description = description;
    }
 
-   @OneToMany
+   @OneToMany(mappedBy = "project")
+   @Cascade(value={CascadeType.ALL})
    public List<Task> getTasks() {
       return this.tasks;
    }
@@ -68,6 +69,7 @@ public class Project {
    }
 
    public void addTask(Task task) {
+      task.setProject(this);
       this.tasks.add(task);
    }
 

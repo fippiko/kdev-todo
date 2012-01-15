@@ -4,6 +4,7 @@ import ch.kdev.todo.client.activity.base.BaseActivity;
 import ch.kdev.todo.client.place.project.EditProjectPlace;
 import ch.kdev.todo.client.place.project.ManageProjectsPlace;
 import ch.kdev.todo.client.place.project.ViewProjectPlace;
+import ch.kdev.todo.client.place.task.AddTaskPlace;
 import ch.kdev.todo.client.view.base.IBaseView;
 import ch.kdev.todo.client.view.factory.IViewFactory;
 import ch.kdev.todo.client.view.project.view.IViewProjectView;
@@ -37,7 +38,7 @@ public class ViewProjectActivity extends BaseActivity implements IViewProjectVie
    }
 
    private void loadProject(Long projectID) {
-      requestFactory.projectRequest().findProject(projectID).fire(new Receiver<ProjectProxy>() {
+      requestFactory.projectRequest().findProject(projectID).with("tasks").fire(new Receiver<ProjectProxy>() {
 
          @Override
          public void onSuccess(ProjectProxy receivedProject) {
@@ -46,7 +47,7 @@ public class ViewProjectActivity extends BaseActivity implements IViewProjectVie
 
          @Override
          public void onFailure(ServerFailure error) {
-            // TODO Auto-generated method stub
+            view.showError(error.getMessage());
             super.onFailure(error);
          }
       });
@@ -58,7 +59,8 @@ public class ViewProjectActivity extends BaseActivity implements IViewProjectVie
 
       if (project.getTasks() != null) {
          for (TaskProxy task : project.getTasks()) {
-            this.view.addProjectTask(task.getName());
+            String taskId = String.valueOf(task.getId());
+            this.view.addTaskListItem(task.getName(), taskId);
          }
       }
    }
@@ -76,5 +78,23 @@ public class ViewProjectActivity extends BaseActivity implements IViewProjectVie
    @Override
    public IBaseView getView() {
       return this.view;
+   }
+
+   @Override
+   public void addTask() {
+      //TODO set Project id on addTaskPlace
+      this.goTo(new AddTaskPlace());
+   }
+
+   @Override
+   public void removeTask() {
+      final Long selectedTaskId = Long.valueOf(this.view.getSelectedTaskListValue());
+      
+      this.requestFactory.taskRequest().delete(selectedTaskId).fire(new Receiver<Void>() {
+
+         @Override
+         public void onSuccess(Void response) {
+            view.removeTaskListItem(selectedTaskId);
+         }});
    }
 }

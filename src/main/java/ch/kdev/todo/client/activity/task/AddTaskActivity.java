@@ -1,6 +1,5 @@
 package ch.kdev.todo.client.activity.task;
 
-import java.util.HashMap;
 import java.util.List;
 
 import ch.kdev.todo.client.activity.base.BaseActivity;
@@ -21,20 +20,16 @@ import com.google.web.bindery.requestfactory.shared.ServerFailure;
 public class AddTaskActivity extends BaseActivity implements IAddTaskView.Presenter {
 
    @Inject
-   IRequestFactory                     requestFactory;
+   IRequestFactory      requestFactory;
 
    @SuppressWarnings("unused")
-   private AddTaskPlace                place;
+   private AddTaskPlace place;
 
-   private IAddTaskView                view;
-
-   private HashMap<Long, ProjectProxy> projects;
+   private IAddTaskView view;
 
    @Inject
    public AddTaskActivity(IViewFactory viewFactory) {
       this.view = viewFactory.getAddTaskView();
-
-      this.projects = new HashMap<Long, ProjectProxy>();
    }
 
    public AddTaskActivity withPlace(AddTaskPlace place) {
@@ -70,9 +65,8 @@ public class AddTaskActivity extends BaseActivity implements IAddTaskView.Presen
 
       newTask.setName(this.view.getTaskName());
       newTask.setDescription(this.view.getTaskDescription());
-      newTask.setProject(this.projects.get(projectId));
 
-      taskRequest.persist(newTask).fire(new Receiver<Void>() {
+      taskRequest.persist(projectId, newTask).fire(new Receiver<Void>() {
 
          @Override
          public void onSuccess(Void arg0) {
@@ -83,6 +77,7 @@ public class AddTaskActivity extends BaseActivity implements IAddTaskView.Presen
          @Override
          public void onFailure(ServerFailure error) {
             view.showError(error.getMessage());
+            super.onFailure(error);
          }
       });
    }
@@ -95,12 +90,16 @@ public class AddTaskActivity extends BaseActivity implements IAddTaskView.Presen
          public void onSuccess(List<ProjectProxy> response) {
             initProjectList(response);
          }
+         @Override
+         public void onFailure(ServerFailure error) {
+            view.showError(error.getMessage());
+            super.onFailure(error);
+         }
       });
    }
 
    private void initProjectList(List<ProjectProxy> projectList) {
       for (ProjectProxy project : projectList) {
-         this.projects.put(project.getId(), project);
          this.view.addProject(project.getName(), project.getId().toString());
       }
    }

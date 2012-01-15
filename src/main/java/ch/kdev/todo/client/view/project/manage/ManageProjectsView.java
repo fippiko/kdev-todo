@@ -1,9 +1,6 @@
 package ch.kdev.todo.client.view.project.manage;
 
-import java.util.List;
-
 import ch.kdev.todo.client.view.base.BaseView;
-import ch.kdev.todo.shared.proxy.ProjectProxy;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -56,9 +53,9 @@ public class ManageProjectsView extends BaseView<IManageProjectsView.Presenter> 
    private void enableWidgets() {
       Boolean itemSelected = projectList.getSelectedIndex() >= 0;
 
-      viewProjectButton.setEnabled(itemSelected);
-      editProjectButton.setEnabled(itemSelected);
-      deleteProjectButton.setEnabled(itemSelected);
+      this.viewProjectButton.setEnabled(itemSelected);
+      this.editProjectButton.setEnabled(itemSelected);
+      this.deleteProjectButton.setEnabled(itemSelected);
    }
 
    private void reloadProjectList() {
@@ -91,18 +88,19 @@ public class ManageProjectsView extends BaseView<IManageProjectsView.Presenter> 
    }
 
    @Override
-   public void updateProjectList(List<ProjectProxy> projects) {
-      projectList.clear();
-      for (ProjectProxy project : projects) {
-         projectList.addItem(project.getName() + " : " + project.getDescription(), String.valueOf(project.getId()));
-      }
-
-      this.enableWidgets();
-   }
-
-   @Override
    public String getSelectedProjectId() {
       String selectedProjectId = projectList.getValue(projectList.getSelectedIndex());
       return selectedProjectId;
+   }
+
+   @Override
+   public void addProjectListItem(String projectName, String projectDescription, String projectId) {
+      String projectLabel = this.getLabels().projectListItem(projectName, projectDescription);
+      this.projectList.addItem(projectLabel, projectId);
+   }
+
+   @Override
+   public void clearProjectList() {
+      this.projectList.clear();
    }
 }

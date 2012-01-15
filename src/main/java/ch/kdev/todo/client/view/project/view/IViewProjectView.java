@@ -9,9 +9,15 @@ public interface IViewProjectView extends IBaseView {
       void manageProjects();
 
       void editProject();
+
+      void addTask();
+      void removeTask();
    }
 
    void setProjectName(String name);
    void setProjectDescription(String description);
-   void addProjectTask(String task);
+   void addTaskListItem(String taskId, String taskName);
+   void removeTaskListItem(Long selectedTaskId);
+   String getSelectedTaskListValue();
+   
 }

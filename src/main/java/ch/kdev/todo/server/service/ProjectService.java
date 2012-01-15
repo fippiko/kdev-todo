@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 
 import ch.kdev.todo.domain.Project;
-import ch.kdev.todo.server.database.HibernateUtil;
 
 import com.allen_sauer.gwt.log.client.Log;
 
@@ -13,12 +12,12 @@ import com.allen_sauer.gwt.log.client.Log;
  * @author fippiko
  * 
  */
-public class ProjectService {
+public class ProjectService extends BaseService{
 
    public void persist(Project project) {
       Log.debug("ProjectService: persisting project");
 
-      Session session = HibernateUtil.getNewSession();
+      Session session = this.getSessionManager().getNewSession();
 
       session.save(project);
 
@@ -42,27 +41,25 @@ public class ProjectService {
       existingProject = (Project) ServiceHelper.mergeObjectWithDelta(Project.class, existingProject, project);
       existingProject.setVersion(existingProject.getVersion() + 1);
 
-      Session session = HibernateUtil.getNewSession();
+      Session session = this.getSessionManager().getNewSession();
 
       session.update(existingProject);
 
       session.getTransaction().commit();
    }
 
-   public void delete(Long id) {
-      Log.debug("ProjectService: delete project ID:" + id);
+   public void delete(Long projectId) {
+      Log.debug("ProjectService: delete project ID:" + projectId);
 
-      Project tempProject = new Project();
+      Project projectToDelete = this.findProject(projectId);
 
-      tempProject.setId(id);
-
-      this.delete(tempProject);
+      this.delete(projectToDelete);
    }
 
    public void delete(Project project) {
       Log.debug("ProjectService: delete project ID:" + project.getId());
 
-      Session session = HibernateUtil.getNewSession();
+      Session session = this.getSessionManager().getNewSession();
 
       session.delete(project);
 
@@ -72,7 +69,7 @@ public class ProjectService {
    public Integer countProjects() {
       Log.debug("ProjectService: count projects");
 
-      Session session = HibernateUtil.getNewSession();
+      Session session = this.getSessionManager().getNewSession();
 
       int count = ((Long) session.createQuery("select count(*) from Project").uniqueResult()).intValue();
 
@@ -80,7 +77,7 @@ public class ProjectService {
    }
 
    public List<Project> findAll() {
-      Session session = HibernateUtil.getNewSession();
+      Session session = this.getSessionManager().getNewSession();
 
       @SuppressWarnings("unchecked")
       List<Project> projects = session.createQuery("from Project").list();
@@ -90,9 +87,9 @@ public class ProjectService {
    }
 
    public Project findProject(Long projectId) {
-      Session session = HibernateUtil.getNewSession();
+      Session session = this.getSessionManager().getNewSession();
 
-      Project foundProject = (Project) session.load(Project.class, projectId);
+      Project foundProject = (Project) session.get(Project.class, projectId);
 
       return foundProject;
    }

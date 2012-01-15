@@ -4,29 +4,44 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import ch.kdev.todo.domain.Project;
 import ch.kdev.todo.domain.Task;
-import ch.kdev.todo.server.database.HibernateUtil;
 
-public class TaskService {
+import com.allen_sauer.gwt.log.client.Log;
 
-   public void persist(Task task) {
-      Session session = HibernateUtil.getNewSession();
+public class TaskService extends BaseService {
+
+   public void persist(Long projectId, Task task) {
+      Session session = this.getSessionManager().getNewSession();
+
+      Project foundProject = (Project) session.get(Project.class, projectId);
+
+      foundProject.addTask(task);
 
       session.save(task);
+      session.save(foundProject);
 
       session.getTransaction().commit();
    }
 
-   public void delete(Task task) {
-      Session session = HibernateUtil.getNewSession();
+   public void delete(Long taskId) {
+      Log.debug("TaskService: delete task with ID:" + taskId);
 
-      session.delete(task);
+      Session session = this.getSessionManager().getNewSession();
+
+      Task taskToDelete = this.findTask(taskId);
+      
+      Project parentProject = taskToDelete.getProject();
+      parentProject.getTasks().remove(taskToDelete);
+      
+      session.save(parentProject);
+      session.delete(taskToDelete);
 
       session.getTransaction().commit();
    }
 
    public Integer countTasks() {
-      Session session = HibernateUtil.getNewSession();
+      Session session = this.getSessionManager().getNewSession();
 
       int count = ((Long) session.createQuery("select count(*) from Task").uniqueResult()).intValue();
 
@@ -34,7 +49,7 @@ public class TaskService {
    }
 
    public List<Task> findAll() {
-      Session session = HibernateUtil.getNewSession();
+      Session session = this.getSessionManager().getNewSession();
 
       @SuppressWarnings("unchecked")
       List<Task> tasks = session.createQuery("from Task").list();
@@ -44,7 +59,7 @@ public class TaskService {
    }
 
    public Task findTask(Long taskId) {
-      Session session = HibernateUtil.getNewSession();
+      Session session = this.getSessionManager().getNewSession();
 
       Task foundTask = (Task) session.load(Task.class, taskId);
 

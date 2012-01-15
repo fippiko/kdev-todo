@@ -67,6 +67,7 @@ public class AddProjectActivity extends BaseActivity implements IAddProjectView.
          @Override
          public void onFailure(ServerFailure error) {
             view.showError(error.getMessage());
+            super.onFailure(error);
          }
       });
    }

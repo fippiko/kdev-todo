@@ -7,8 +7,7 @@ import ch.kdev.todo.client.view.project.add.IAddProjectView;
 import ch.kdev.todo.client.view.project.edit.IEditProjectView;
 import ch.kdev.todo.client.view.project.manage.IManageProjectsView;
 import ch.kdev.todo.client.view.project.view.IViewProjectView;
-import ch.kdev.todo.client.view.resources.ClientConstants;
-import ch.kdev.todo.client.view.resources.ClientMessages;
+import ch.kdev.todo.client.view.resources.ClientLabels;
 import ch.kdev.todo.client.view.resources.ClientResources;
 import ch.kdev.todo.client.view.task.add.IAddTaskView;
 import ch.kdev.todo.client.view.widgets.messagebox.error.IErrorMessageBox;
@@ -39,8 +38,7 @@ public interface IViewFactory extends Ginjector {
 
    // resources
    ClientResources getClientResources();
-   ClientMessages getClientMessages();
-   ClientConstants getClientConstants();
+   ClientLabels getClientLabels();
 
    // various
    ValidationProcessor getValidator();

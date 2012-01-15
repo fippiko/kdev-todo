@@ -63,6 +63,13 @@
 			<version>1.5.0</version>
 		</dependency>
 
+		<!-- guice -->
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-servlet</artifactId>
+			<version>3.0</version>
+		</dependency>
+
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -78,10 +85,18 @@
 			<version>3.9.0.GA</version>
 		</dependency>
 
+		<!-- MYSQL -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
+		</dependency>
+
+		<!-- HSQLDB -->
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.10</version>
 		</dependency>
 
 		<!-- JUnit -->
@@ -261,8 +276,7 @@
 						<cssFile>ch/kdev/todo/client/view/resources/ClientStyle.css</cssFile>
 					</cssFiles>
 					<i18nMessagesBundles>
-						<i18nMessagesBundle>ch.kdev.todo.client.view.resources.ClientMessages</i18nMessagesBundle>
-						<i18nMessagesBundle>ch.kdev.todo.client.view.resources.ClientConstants</i18nMessagesBundle>
+						<i18nMessagesBundle>ch.kdev.todo.client.view.resources.ClientLabels</i18nMessagesBundle>
 					</i18nMessagesBundles>
 					<generateDirectory>${sourceDirectory}</generateDirectory>
 				</configuration>

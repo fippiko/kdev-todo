@@ -1,6 +1,7 @@
 package ch.kdev.todo.server.locator;
 
 import ch.kdev.todo.domain.Project;
+import ch.kdev.todo.server.service.ProjectService;
 
 import com.google.web.bindery.requestfactory.shared.Locator;
 
@@ -33,6 +34,6 @@ public class ProjectLocator extends Locator<Project, Long> {
 
    @Override
    public Project find(Class<? extends Project> clazz, Long id) {
-      return new Project();
+      return new ProjectService().findProject(id);
    }
 }

@@ -46,8 +46,9 @@ public class TestServiceTest extends TestCase {
    @Test
    public void testProjectCRUD() {
       // C - Create
-      Task taskToAdd = this.createNewTask(this.taskProject);
-      this.taskService.persist(taskToAdd);
+      Task taskToAdd = this.createNewTask();
+      Long projectId = this.taskProject.getId();
+      this.taskService.persist(projectId, taskToAdd);
 
       // R - Read
       Task addedTask = this.taskService.findTask(taskToAdd.getId());
@@ -59,26 +60,28 @@ public class TestServiceTest extends TestCase {
       addedTask.setName(TASK_UPDATE_NAME);
       addedTask.setDescription(TASK_UPDATE_DESCRIPTION);
 
-      this.taskService.persist(addedTask);
+      this.taskService.persist(projectId, addedTask);
       Task updatedTask = this.taskService.findTask(addedTask.getId());
 
       assertEquals(TASK_UPDATE_NAME, updatedTask.getName());
       assertEquals(TASK_UPDATE_DESCRIPTION, updatedTask.getDescription());
 
       // D - Delete
-      this.taskService.delete(updatedTask);
+      this.taskService.delete(updatedTask.getId());
    }
 
    @Test
    public void testFindAll() {
       // add some projects...
-      Task taskToAdd1 = this.createNewTask(this.taskProject);
-      Task taskToAdd2 = this.createNewTask(this.taskProject);
-      Task taskToAdd3 = this.createNewTask(this.taskProject);
+      Long projectId = this.taskProject.getId();
+      
+      Task taskToAdd1 = this.createNewTask();
+      Task taskToAdd2 = this.createNewTask();
+      Task taskToAdd3 = this.createNewTask();
 
-      this.taskService.persist(taskToAdd1);
-      this.taskService.persist(taskToAdd2);
-      this.taskService.persist(taskToAdd3);
+      this.taskService.persist(projectId, taskToAdd1);
+      this.taskService.persist(projectId, taskToAdd2);
+      this.taskService.persist(projectId, taskToAdd3);
 
       List<Task> allTasks = this.taskService.findAll();
 
@@ -101,17 +104,16 @@ public class TestServiceTest extends TestCase {
       assertTrue(this.taskService.countTasks() >= 3);
 
       // delete all created projects
-      this.taskService.delete(taskToAdd1);
-      this.taskService.delete(taskToAdd2);
-      this.taskService.delete(taskToAdd3);
+      this.taskService.delete(taskToAdd1.getId());
+      this.taskService.delete(taskToAdd2.getId());
+      this.taskService.delete(taskToAdd3.getId());
    }
 
-   private Task createNewTask(Project project) {
+   private Task createNewTask() {
       Task task = new Task();
 
       task.setName(TASK_ADD_NAME);
       task.setDescription(TASK_ADD_DESCRIPTION);
-      task.setProject(project);
 
       return task;
    }

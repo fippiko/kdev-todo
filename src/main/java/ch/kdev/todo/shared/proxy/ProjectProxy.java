@@ -12,16 +12,14 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 public interface ProjectProxy extends EntityProxy {
 
    public Long getId();
-
    public void setId(Long id);
 
    public String getName();
-
    public void setName(String name);
 
    public String getDescription();
-
    public void setDescription(String description);
 
    public List<TaskProxy> getTasks();
+   public void setTasks(List<TaskProxy> tasks);
 }

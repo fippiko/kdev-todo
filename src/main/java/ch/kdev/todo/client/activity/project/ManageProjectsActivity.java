@@ -15,6 +15,7 @@ import ch.kdev.todo.shared.requestfactory.IRequestFactory;
 
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class ManageProjectsActivity extends BaseActivity implements IManageProjectsView.Presenter {
 
@@ -42,9 +43,24 @@ public class ManageProjectsActivity extends BaseActivity implements IManageProje
 
          @Override
          public void onSuccess(List<ProjectProxy> response) {
-            view.updateProjectList(response);
+            updateProjectList(response);
+         }
+         
+         @Override
+         public void onFailure(ServerFailure error) {
+            view.showError(error.getMessage());
+            super.onFailure(error);
          }
       });
+   }
+
+   private void updateProjectList(List<ProjectProxy> projects) {
+      this.view.clearProjectList();
+      
+      for (ProjectProxy project : projects) {
+         String projectId = String.valueOf(project.getId());
+         this.view.addProjectListItem(project.getName(), project.getDescription(), projectId);
+      }
    }
 
    @Override

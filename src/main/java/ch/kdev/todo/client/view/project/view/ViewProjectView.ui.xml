@@ -23,10 +23,12 @@
 			<tr>
 				<td><g:Label>Name:</g:Label></td>
 				<td><g:TextBox ui:field="projectNameTextBox" styleName="{style.nameTextBox}" readOnly="true"></g:TextBox></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td><g:Label>Description:</g:Label></td>
 				<td><g:TextArea ui:field="projectDescriptionTextArea" styleName="{style.descriptionTextArea}" readOnly="true"></g:TextArea></td>
+				<td></td>
 			</tr>
 			
 			<tr>
@@ -35,9 +37,12 @@
 				</td>
 				
 				<td>
-					<g:ListBox ui:field="taskList">
-						
-					</g:ListBox>
+					<g:ListBox ui:field="taskList"/>
+				</td>
+				
+				<td>
+					<g:Button ui:field='addTaskButton'>+</g:Button>
+					<g:Button ui:field="removeTaskButton">-</g:Button>
 				</td>
 			</tr>
 			

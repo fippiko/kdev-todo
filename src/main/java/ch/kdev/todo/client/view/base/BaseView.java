@@ -2,8 +2,7 @@ package ch.kdev.todo.client.view.base;
 
 import ch.kdev.todo.client.activity.base.IBaseActivity;
 import ch.kdev.todo.client.view.factory.IViewFactory;
-import ch.kdev.todo.client.view.resources.ClientConstants;
-import ch.kdev.todo.client.view.resources.ClientMessages;
+import ch.kdev.todo.client.view.resources.ClientLabels;
 import ch.kdev.todo.client.view.resources.ClientResources;
 import ch.kdev.todo.client.view.resources.ClientStyleExt;
 import ch.kdev.todo.client.view.widgets.messagebox.error.IErrorMessageBox;
@@ -55,11 +54,11 @@ public class BaseView<Presenter extends IPresenter> extends Composite implements
       return this.viewFactory.getClientResources();
    }
 
-   protected ClientConstants getConstants() {
-      return this.getViewFactory().getClientConstants();
+   protected ClientLabels getConstants() {
+      return this.getViewFactory().getClientLabels();
    }
 
-   protected ClientMessages getMessages() {
-      return this.getViewFactory().getClientMessages();
+   protected ClientLabels getLabels() {
+      return this.getViewFactory().getClientLabels();
    }
 }

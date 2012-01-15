@@ -45,6 +45,11 @@ public class EditProjectActivity extends BaseActivity implements IEditProjectVie
             project = receivedProject;
             view.setProjectAttributes(receivedProject);
          }
+         @Override
+         public void onFailure(ServerFailure error) {
+            view.showError(error.getMessage());
+            super.onFailure(error);
+         }
       });
    }
 
@@ -77,7 +82,7 @@ public class EditProjectActivity extends BaseActivity implements IEditProjectVie
 
          @Override
          public void onFailure(ServerFailure error) {
-            // TODO Auto-generated method stub
+            view.showError(error.getMessage());
             super.onFailure(error);
          }
       });
